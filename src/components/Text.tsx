@@ -1,5 +1,5 @@
 'use client';
-import { styled } from '../../stitches.config';
+import { styled } from '../stitches.config';
 
 export const P = styled('p', {
   color: '$purple',

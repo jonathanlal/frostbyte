@@ -1,7 +1,7 @@
 'use client';
 import React, { Dispatch, SetStateAction } from 'react';
 import * as SwitchPrimitive from '@radix-ui/react-switch';
-import { styled } from '../../stitches.config';
+import { styled } from '../stitches.config';
 import { Label } from './Text';
 
 export const Switch = ({
