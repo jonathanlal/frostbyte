@@ -2,7 +2,7 @@
   "name": "frostbyte",
   "type": "module",
   "author": "Jonathan Laliberte <jonathanmlaliberte@gmail.com>",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "private": false,
   "types": "dist/index.d.ts",
   "main": "dist/cjs/index.js",
@@ -57,5 +57,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "gitHead": "decdde6e061a0a4ccbdcb5c88a1e19d5a47e4099"
 }
