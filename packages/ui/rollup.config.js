@@ -5,6 +5,7 @@ import terser from '@rollup/plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import dts from 'rollup-plugin-dts';
 import { readFileSync } from 'fs';
+
 const packageJson = JSON.parse(
   readFileSync('package.json', { encoding: 'utf8' })
 );
@@ -17,7 +18,6 @@ export default [
         file: packageJson.main,
         format: 'cjs',
         sourcemap: true,
-        name: 'frostbyte',
       },
       {
         file: packageJson.module,
@@ -32,6 +32,7 @@ export default [
       typescript({ tsconfig: './tsconfig.json' }),
       terser(),
     ],
+    external: ['react', 'react-dom'],
   },
   {
     input: 'dist/esm/types/index.d.ts',

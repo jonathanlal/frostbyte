@@ -1,20 +1,12 @@
-import { createStitches } from '@stitches/react';
-/* import { Zen_Maru_Gothic, Fira_Mono  } from '@next/font/google';
+import { FrostbyteConfigType } from 'types/FrostbyteConfigType';
 
-const zen = Zen_Maru_Gothic({weight: '500', subsets: ['cyrillic']});
-const fira = Fira_Mono({weight: '500', subsets: ['cyrillic']}); */
-
-export const { styled, getCssText, globalCss } = createStitches({
+export const defaultStyles: FrostbyteConfigType = {
   media: {
     sm: '(min-width: 640px)',
     md: '(min-width: 768px)',
     lg: '(min-width: 1024px)',
   },
   theme: {
-    /*       fonts: {
-        zen: zen.style.fontFamily,
-        fira: fira.style.fontFamily,
-      }, */
     colors: {
       purple: '#6c0392',
       green: '#38f689',
@@ -56,4 +48,4 @@ export const { styled, getCssText, globalCss } = createStitches({
       3: 'rgba(0, 0, 0, 0.64) 0px 2px 10px',
     },
   },
-});
+};
