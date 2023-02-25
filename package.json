@@ -6,5 +6,10 @@
   ],
   "devDependencies": {
     "lerna": "^6.5.1"
+  },
+  "scripts": {
+    "start": "npx lerna run start --scope=test-app",
+    "build": "npx lerna run build --scope=ui",
+    "lerna:publish": "npx lerna publish --no-private"
   }
 }
