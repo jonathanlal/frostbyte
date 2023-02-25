@@ -2,7 +2,7 @@
   "name": "frostbyte",
   "type": "module",
   "author": "Jonathan Laliberte <jonathanmlaliberte@gmail.com>",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": false,
   "types": "dist/index.d.ts",
   "main": "dist/cjs/index.js",
