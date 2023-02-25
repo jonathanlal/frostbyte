@@ -1,4 +1,4 @@
-import { FrostbyteProvider, P} from 'ui';
+import { FrostbyteProvider, P} from 'frostbyte';
 
 function App() {
   return (

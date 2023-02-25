@@ -10,6 +10,7 @@
   "scripts": {
     "start": "npx lerna run start --scope=test-app",
     "build": "npx lerna run build --scope=ui",
+    "build:all": "npx lerna run build",
     "lerna:publish": "npx lerna publish --no-private"
   }
 }
