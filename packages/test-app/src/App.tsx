@@ -3,7 +3,7 @@ import { FrostbyteProvider, P} from 'frostbyte';
 function App() {
   return (
      <FrostbyteProvider styles={{primary: 'pink'}}>
-      <P>works</P>
+      <P>works!</P>
      </FrostbyteProvider>
   );
 }
