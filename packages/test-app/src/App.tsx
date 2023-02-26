@@ -1,10 +1,9 @@
-import { FrostbyteProvider, P} from 'frostbyte';
+import { P } from 'frostbyte';
 
 function App() {
   return (
-     <FrostbyteProvider styles={{primary: 'pink'}}>
-      <P>works!</P>
-     </FrostbyteProvider>
+    // tests
+    <P color="yellow">works4!</P>
   );
 }
 

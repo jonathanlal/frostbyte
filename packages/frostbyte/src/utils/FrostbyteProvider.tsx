@@ -67,7 +67,7 @@ export const FrostbyteProvider = ({
     },
   };
 
-  const { config } = createStitches(updatedStyles);
+  const { config } = createStitches(updatedStyles); // do this outside and fuck it no need to pass styles through context, we can use context for something else
   return (
     <FrostbyteContext.Provider value={config}>
       {children}

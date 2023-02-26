@@ -13,7 +13,9 @@
   },
   "peerDependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@types/react": "^18.0.12",
+    "@types/react-dom": "^18.0.11"
   },
   "files": [
     "dist",
@@ -23,26 +25,14 @@
     "build": "rollup -c && robocopy . ./dist README.md"
   },
   "devDependencies": {
-    "@rollup/plugin-alias": "^4.0.3",
+    "rollup": "^3.17.2",
     "@rollup/plugin-commonjs": "^24.0.1",
-    "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-terser": "^0.4.0",
     "@rollup/plugin-typescript": "^11.0.0",
-    "@stitches/react": "^1.2.8",
-    "@types/react": "^18.0.12",
-    "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.27.1",
-    "@typescript-eslint/parser": "^5.27.1",
-    "eslint": "^8.17.0",
-    "eslint-plugin-react": "^7.30.0",
-    "eslint-plugin-react-hooks": "^4.5.0",
-    "prettier": "^2.8.3",
-    "rollup": "^3.17.2",
     "rollup-plugin-dts": "^5.2.0",
-    "rollup-plugin-ignore": "^1.0.10",
-    "rollup-plugin-node-externals": "^5.1.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "@stitches/react": "^1.2.8",
     "tslib": "^2.5.0",
     "typescript": "^4.9.4"
   },

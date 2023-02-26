@@ -1,12 +1,36 @@
 import React, { ReactNode } from 'react';
-import { useFrostbyte } from 'hooks/useFrostbyte';
+import { colorVariants } from 'styles/variants/colors';
+import { fontSizeVariants } from 'styles/variants/fontSizes';
+import { styled } from 'utils/getStyles';
 
-export const P = ({ children }: { children: ReactNode }) => {
+export const Paragraph = styled('p', {
+  margin: 0,
 
-  const test = useFrostbyte();
-  console.log('test', test);
+  variants: {
+    color: {
+      ...colorVariants,
+    },
+    size: {
+      ...fontSizeVariants,
+    },
+  },
+  defaultVariants: {
+    color: colorVariants.black.color,
+    size: fontSizeVariants[20].fontSize,
+  },
+});
 
-  return (
-    <p>{children}</p>
-  );
-};
+type ParagraphProps = React.ComponentProps<typeof Paragraph>;
+export const P = ({
+  children,
+  color,
+  size,
+}: {
+  children: ReactNode;
+  color?: ParagraphProps['color'];
+  size?: ParagraphProps['size'];
+}) => (
+  <Paragraph color={color} size={size}>
+    {children}
+  </Paragraph>
+);
