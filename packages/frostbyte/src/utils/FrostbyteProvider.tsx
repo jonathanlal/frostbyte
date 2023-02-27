@@ -1,75 +1,46 @@
-import { createStitches } from '@stitches/react';
-import { defaultStyles } from 'styles/defaultstyles';
-import { FrostbyteContext } from 'utils/FrostbyteContext';
-import { FrostbyteConfigType } from 'types/FrostbyteConfigType';
 import React from 'react';
+import { FrostbyteContext } from 'utils/FrostbyteContext';
+import { createTheme } from './getStyles';
+import { ConfigType } from '@stitches/react/types/config';
+import { darkThemeStyles } from 'styles/darkTheme';
 
 export const FrostbyteProvider = ({
-  styles,
+  customTheme,
+  darkMode,
   children,
 }: {
   children: React.ReactNode;
-  styles: FrostbyteConfigType;
-}) => {
-  const defaultPrefix = defaultStyles.prefix;
-  const defaultMedia = defaultStyles.media;
-  const defaultTheme = defaultStyles.theme;
-  const defaultThemeMap = defaultStyles.themeMap;
-  const defaultUtils = defaultStyles.utils;
-
-  //theme related
-  const defaultColors = defaultTheme?.colors;
-  const defaultFontSizes = defaultTheme?.fontSizes;
-  const defaultBorderWidths = defaultTheme?.borderWidths;
-  const defaultRadii = defaultTheme?.radii;
-  const defaultSpace = defaultTheme?.space;
-  const defaultShadows = defaultTheme?.shadows;
-
-  const updatedStyles: FrostbyteConfigType = {
-    prefix: styles?.prefix || defaultPrefix,
-    media: {
-      ...defaultMedia,
-      ...styles?.media,
-    },
-    theme: {
-      colors: {
-        ...defaultColors,
-        ...styles?.theme?.colors,
-      },
-      fontSizes: {
-        ...defaultFontSizes,
-        ...styles?.theme?.fontSizes,
-      },
-      borderWidths: {
-        ...defaultBorderWidths,
-        ...styles?.theme?.borderWidths,
-      },
-      radii: {
-        ...defaultRadii,
-        ...styles?.theme?.radii,
-      },
-      space: {
-        ...defaultSpace,
-        ...styles?.theme?.space,
-      },
-      shadows: {
-        ...defaultShadows,
-        ...styles?.theme?.shadows,
-      },
-    },
-    themeMap: {
-      ...defaultThemeMap,
-      ...styles?.themeMap,
-    },
-    utils: {
-      ...defaultUtils,
-      ...styles?.utils,
-    },
+  customTheme?: {
+    name: string;
+    theme: ConfigType.Theme;
+    isActive?: boolean;
   };
+  darkMode?: {
+    hasDarkMode: boolean;
+    isActive: boolean;
+  };
+}) => {
+  if (darkMode && darkMode.hasDarkMode && darkMode.isActive) {
+    const darkTheme = createTheme('dark-theme', darkThemeStyles);
+    return (
+      <FrostbyteContext.Provider value={{ something: '' }}>
+        <div className={darkTheme}>{children}</div>
+      </FrostbyteContext.Provider>
+    );
+  }
 
-  const { config } = createStitches(updatedStyles); // do this outside and fuck it no need to pass styles through context, we can use context for something else
+  //remove isActive after testing (they either pass a customTheme or not)
+  if (customTheme && customTheme.isActive) {
+    const theme = createTheme(customTheme.name, customTheme.theme);
+    return (
+      <FrostbyteContext.Provider value={{ something: '' }}>
+        <div className={theme}>{children}</div>
+      </FrostbyteContext.Provider>
+    );
+  }
+
   return (
-    <FrostbyteContext.Provider value={config}>
+    <FrostbyteContext.Provider value={{ something: '' }}>
       {children}
     </FrostbyteContext.Provider>
   );

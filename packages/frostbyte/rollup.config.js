@@ -12,7 +12,7 @@ const packageJson = JSON.parse(
 
 export default [
   {
-    input: 'src/index.ts',
+    input: 'src/entry/index.ts',
     output: [
       {
         file: packageJson.main,

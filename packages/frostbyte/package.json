@@ -12,29 +12,31 @@
     "url": "git+https://github.com/jonathanlal/frostbyte.git"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "@types/react": "^18.0.12",
-    "@types/react-dom": "^18.0.11"
+    "@types/react-dom": "^18.0.11",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "files": [
     "dist",
     "README.md"
   ],
   "scripts": {
+    "start": "react-scripts start",
     "build": "rollup -c && robocopy . ./dist README.md"
   },
   "devDependencies": {
-    "rollup": "^3.17.2",
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-terser": "^0.4.0",
     "@rollup/plugin-typescript": "^11.0.0",
+    "@stitches/react": "^1.2.8",
+    "rollup": "^3.17.2",
     "rollup-plugin-dts": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "@stitches/react": "^1.2.8",
     "tslib": "^2.5.0",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "react-scripts": "5.0.1"
   },
   "browserslist": {
     "production": [
@@ -48,5 +50,8 @@
       "last 1 safari version"
     ]
   },
-  "gitHead": "decdde6e061a0a4ccbdcb5c88a1e19d5a47e4099"
+  "gitHead": "decdde6e061a0a4ccbdcb5c88a1e19d5a47e4099",
+  "dependencies": {
+    "@radix-ui/react-switch": "^1.0.1"
+  }
 }

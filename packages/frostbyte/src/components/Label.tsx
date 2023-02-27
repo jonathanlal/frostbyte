@@ -3,8 +3,9 @@ import { colorVariants } from 'styles/variants/colors';
 import { fontSizeVariants } from 'styles/variants/fontSizes';
 import { styled } from 'utils/getStyles';
 
-const StyledParagraph = styled('p', {
+export const StyledLabel = styled('label', {
   margin: 0,
+  userSelect: 'none',
 
   variants: {
     color: {
@@ -20,17 +21,19 @@ const StyledParagraph = styled('p', {
   },
 });
 
-type StyledParagraphProps = React.ComponentProps<typeof StyledParagraph>;
-export const P = ({
+type StyledLabelProps = React.ComponentProps<typeof StyledLabel>;
+export const Label = ({
   children,
   color,
   size,
+  htmlFor,
 }: {
   children: ReactNode;
-  color?: StyledParagraphProps['color'];
-  size?: StyledParagraphProps['size'];
+  color?: StyledLabelProps['color'];
+  size?: StyledLabelProps['size'];
+  htmlFor: StyledLabelProps['htmlFor'];
 }) => (
-  <StyledParagraph color={color} size={size}>
+  <StyledLabel color={color} size={size} htmlFor={htmlFor}>
     {children}
-  </StyledParagraph>
+  </StyledLabel>
 );

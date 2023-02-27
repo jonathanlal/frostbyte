@@ -14,7 +14,7 @@
     "eslint-plugin-react-hooks": "^4.5.0"
   },
   "scripts": {
-    "start": "npx lerna run start --scope=test-app",
+    "start": "npx lerna run start --scope=frostbyte",
     "build": "npx lerna run build --scope=frostbyte",
     "build:all": "npx lerna run build",
     "lerna:publish": "npx lerna publish --no-private"

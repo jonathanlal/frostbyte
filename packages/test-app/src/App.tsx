@@ -1,9 +1,24 @@
-import { P } from 'frostbyte';
+import { Label, P, Switch } from 'frostbyte';
+import { useState } from 'react';
 
 function App() {
+  const [on, setOn] = useState(true);
   return (
-    // tests
-    <P color="yellow">works4!</P>
+    <>
+      <P color="red" size="70">
+        works4!
+      </P>
+      <Switch
+        setChecked={setOn}
+        checked={on}
+        label={'hello world'}
+        labelFor={'switch123'}
+      />
+
+      <Label htmlFor="test" color="blue" size="26">
+        test label
+      </Label>
+    </>
   );
 }
 
