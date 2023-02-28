@@ -138,5 +138,13 @@ export const defaultStyles: FrostbyteConfigType = {
       2: 'rgba(0, 0, 0, 0.44) 0px 2px 10px',
       3: 'rgba(0, 0, 0, 0.64) 0px 2px 10px',
     },
+    fontWeights: {
+      400: '400',
+      500: '500',
+      600: '600',
+      700: '700',
+      800: '800',
+      900: '900',
+    },
   },
 };

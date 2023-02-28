@@ -1,11 +1,13 @@
 import React, { ReactNode } from 'react';
 import { colorVariants } from 'styles/variants/colors';
 import { fontSizeVariants } from 'styles/variants/fontSizes';
+import { fontWeightVariants } from 'styles/variants/fontWeights';
 import { styled } from 'utils/getStyles';
+import type { VariantProps } from '@stitches/react';
 
 const StyledParagraph = styled('p', {
   margin: 0,
-
+  color: '$black',
   variants: {
     color: {
       ...colorVariants,
@@ -13,24 +15,20 @@ const StyledParagraph = styled('p', {
     size: {
       ...fontSizeVariants,
     },
+    weight: {
+      ...fontWeightVariants,
+    },
   },
   defaultVariants: {
-    color: colorVariants.black.color,
     size: fontSizeVariants[20].fontSize,
   },
 });
 
-type StyledParagraphProps = React.ComponentProps<typeof StyledParagraph>;
+type ParagraphProps = VariantProps<typeof StyledParagraph>;
+
 export const P = ({
   children,
-  color,
-  size,
-}: {
+  ...props
+}: ParagraphProps & {
   children: ReactNode;
-  color?: StyledParagraphProps['color'];
-  size?: StyledParagraphProps['size'];
-}) => (
-  <StyledParagraph color={color} size={size}>
-    {children}
-  </StyledParagraph>
-);
+}) => <StyledParagraph {...props}>{children}</StyledParagraph>;

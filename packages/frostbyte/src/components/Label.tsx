@@ -1,12 +1,14 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { colorVariants } from 'styles/variants/colors';
 import { fontSizeVariants } from 'styles/variants/fontSizes';
+import { fontWeightVariants } from 'styles/variants/fontWeights';
+import type { VariantProps } from '@stitches/react';
 import { styled } from 'utils/getStyles';
 
-export const StyledLabel = styled('label', {
+const StyledLabel = styled('label', {
   margin: 0,
   userSelect: 'none',
-
+  color: '$black',
   variants: {
     color: {
       ...colorVariants,
@@ -14,26 +16,22 @@ export const StyledLabel = styled('label', {
     size: {
       ...fontSizeVariants,
     },
+    weight: {
+      ...fontWeightVariants,
+    },
   },
   defaultVariants: {
-    color: colorVariants.black.color,
     size: fontSizeVariants[20].fontSize,
   },
 });
 
-type StyledLabelProps = React.ComponentProps<typeof StyledLabel>;
+export type LabelProps = VariantProps<typeof StyledLabel> & {
+  htmlFor?: string;
+};
+
 export const Label = ({
   children,
-  color,
-  size,
-  htmlFor,
-}: {
-  children: ReactNode;
-  color?: StyledLabelProps['color'];
-  size?: StyledLabelProps['size'];
-  htmlFor: StyledLabelProps['htmlFor'];
-}) => (
-  <StyledLabel color={color} size={size} htmlFor={htmlFor}>
-    {children}
-  </StyledLabel>
-);
+  ...props
+}: LabelProps & {
+  children: React.ReactNode;
+}) => <StyledLabel {...props}>{children}</StyledLabel>;

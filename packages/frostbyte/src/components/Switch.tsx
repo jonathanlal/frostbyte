@@ -1,49 +1,50 @@
-// 'use client';
 import React, { Dispatch, SetStateAction } from 'react';
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import { Label } from 'components/Label';
 import { styled } from 'utils/getStyles';
+import type { VariantProps } from '@stitches/react';
+import { PrefixedLabelProps } from 'types/PropTypes';
 
-type SwitchRootProps = React.ComponentProps<typeof SwitchRoot>;
-/**
- *
- * If you use label remember to pass labelFor prop also for htmlFor attribute (unique id that references the switch)
- *
- */
-export const Switch = ({
-  label,
-  labelFor,
-  setChecked,
-  checked,
-  size,
-}: {
-  label?: string;
-  labelFor?: string;
+type SwitchProps = VariantProps<typeof SwitchRoot> & {
   setChecked: Dispatch<SetStateAction<boolean>>;
   checked: boolean;
-  size?: SwitchRootProps['size'];
-}) => {
-  const labelSize = () => {
-    if (size === 'sm') return 16;
-    if (size === 'lg') return 42;
+  label?: string;
+  labelFor?: string;
+} & PrefixedLabelProps;
+
+/**
+ *
+ * labelFor links the label to the switch, if you want to link a different element to htmlFor the switch, use labelHtmlFor which will give id to the switch
+ *
+ */
+
+export const Switch = ({ ...props }: SwitchProps) => {
+  const getLabelSize = () => {
+    if (props.size === 'sm') return 16;
+    if (props.size === 'lg') return 42;
     else {
       return 28;
     }
   };
   return (
     <SwitchContainer>
-      {label && labelFor && (
-        <Label htmlFor={labelFor} size={labelSize()}>
-          {label}
+      {props?.label && props?.labelFor && !props?.labelHtmlFor && (
+        <Label
+          htmlFor={props.labelFor}
+          size={props.labelSize || getLabelSize()}
+          weight={props?.labelWeight}
+          color={props?.labelColor}
+        >
+          {props?.label}
         </Label>
       )}
       <SwitchRoot
-        id={labelFor}
-        onCheckedChange={() => setChecked(!checked)}
-        defaultChecked={checked}
-        size={size}
+        id={props?.labelHtmlFor || props?.labelFor}
+        onCheckedChange={() => props.setChecked(!props.checked)}
+        defaultChecked={props.checked}
+        size={props.size}
       >
-        <SwitchThumb size={size} />
+        <SwitchThumb size={props.size} />
       </SwitchRoot>
     </SwitchContainer>
   );
