@@ -3,7 +3,7 @@ import * as SwitchPrimitive from '@radix-ui/react-switch';
 import { Label } from 'components/Label';
 import { styled } from 'utils/getStyles';
 import type { VariantProps } from '@stitches/react';
-import { PrefixedLabelProps } from 'types/PropTypes';
+import { PrefixedLabelProps } from 'types/propTypes';
 
 type SwitchProps = VariantProps<typeof SwitchRoot> & {
   setChecked: Dispatch<SetStateAction<boolean>>;

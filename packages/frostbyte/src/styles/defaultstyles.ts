@@ -1,4 +1,5 @@
-import { FrostbyteConfigType } from 'types/FrostbyteConfigType';
+import { FrostbyteConfigType } from 'types/frostbyteConfigType';
+import { colors } from './colors';
 
 export const defaultStyles: FrostbyteConfigType = {
   media: {
@@ -8,15 +9,7 @@ export const defaultStyles: FrostbyteConfigType = {
   },
   theme: {
     colors: {
-      purple: '#6c0392',
-      green: '#38f689',
-      blue: '#00bfff',
-      red: '#ff6347',
-      yellow: '#ffd700',
-      orange: '#f4b350',
-      grey: '#d5d5d5',
-      black: '#111827',
-      white: '#FEFEFE',
+      ...colors.default,
     },
     fontSizes: {
       12: '12px',

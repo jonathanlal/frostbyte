@@ -1,21 +1,17 @@
 import React from 'react';
-import { colorVariants } from 'styles/variants/colors';
-import { fontSizeVariants } from 'styles/variants/fontSizes';
-import { fontWeightVariants } from 'styles/variants/fontWeights';
+import { fontWeightVariants } from 'styles/variants/fontWeightVariants';
 import type { VariantProps } from '@stitches/react';
 import { styled } from 'utils/getStyles';
+import { fontSizeVariants } from 'styles/variants/fontSizeVariants';
+import { colorVariants } from 'styles/variants/colorVariants';
 
 const StyledLabel = styled('label', {
   margin: 0,
   userSelect: 'none',
   color: '$black',
   variants: {
-    color: {
-      ...colorVariants,
-    },
-    size: {
-      ...fontSizeVariants,
-    },
+    color: colorVariants,
+    size: fontSizeVariants,
     weight: {
       ...fontWeightVariants,
     },

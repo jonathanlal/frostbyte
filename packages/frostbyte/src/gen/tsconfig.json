@@ -1,0 +1,13 @@
+{
+  "ts-node": {
+    "esm": true,
+    "compilerOptions": {
+      "strict": true,
+      "module": "Node16",
+      "moduleResolution": "Node16",
+      "allowJs": true,
+      "allowSyntheticDefaultImports": true,
+      "noImplicitAny": false
+    }
+  }
+}

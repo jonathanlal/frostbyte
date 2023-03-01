@@ -1,6 +1,6 @@
 {
   "include": ["src"],
-  "exclude": ["dist", "node_modules"],
+  "exclude": ["dist", "node_modules", "src/gen"],
   "compilerOptions": {
     "target": "ES6",
     "module": "esnext",
@@ -29,7 +29,7 @@
       "utils/*": ["./utils/*"],
       "types/*": ["./types/*"],
       "hooks/*": ["./hooks/*"],
-      "styles/*": ["./styles/*"],
+      "styles/*": ["./styles/*"]
     }
-  },
+  }
 }

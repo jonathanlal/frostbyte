@@ -1,26 +1,23 @@
 import React, { ReactNode } from 'react';
-import { colorVariants } from 'styles/variants/colors';
-import { fontSizeVariants } from 'styles/variants/fontSizes';
-import { fontWeightVariants } from 'styles/variants/fontWeights';
+import { colorVariants } from 'styles/variants/colorVariants';
+import { fontSizeVariants } from 'styles/variants/fontSizeVariants';
+import { fontWeightVariants } from 'styles/variants/fontWeightVariants';
 import { styled } from 'utils/getStyles';
 import type { VariantProps } from '@stitches/react';
+import { responsiveFontSizeVariants } from 'styles/variants/responsiveFontSizeVariants';
 
 const StyledParagraph = styled('p', {
   margin: 0,
-  color: '$black',
+  color: '$purple10',
+  lineHeight: 1,
   variants: {
-    color: {
-      ...colorVariants,
-    },
-    size: {
-      ...fontSizeVariants,
-    },
-    weight: {
-      ...fontWeightVariants,
-    },
+    color: colorVariants,
+    responsive: responsiveFontSizeVariants['p'],
+    size: fontSizeVariants,
+    weight: fontWeightVariants,
   },
   defaultVariants: {
-    size: fontSizeVariants[20].fontSize,
+    responsive: 'md',
   },
 });
 

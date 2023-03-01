@@ -23,20 +23,24 @@
   ],
   "scripts": {
     "start": "react-scripts start",
-    "build": "rollup -c && robocopy . ./dist README.md"
+    "build": "rollup -c && robocopy . ./dist README.md",
+    "generate": "ts-node src/gen/script.ts && npx prettier --write src/styles/variants/*"
   },
   "devDependencies": {
+    "@radix-ui/colors": "^0.1.8",
+    "@radix-ui/react-switch": "^1.0.1",
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-terser": "^0.4.0",
     "@rollup/plugin-typescript": "^11.0.0",
     "@stitches/react": "^1.2.8",
+    "react-scripts": "5.0.1",
     "rollup": "^3.17.2",
     "rollup-plugin-dts": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "ts-node": "^10.9.1",
     "tslib": "^2.5.0",
-    "typescript": "^4.9.4",
-    "react-scripts": "5.0.1"
+    "typescript": "^4.9.4"
   },
   "browserslist": {
     "production": [
@@ -50,8 +54,5 @@
       "last 1 safari version"
     ]
   },
-  "gitHead": "decdde6e061a0a4ccbdcb5c88a1e19d5a47e4099",
-  "dependencies": {
-    "@radix-ui/react-switch": "^1.0.1"
-  }
+  "gitHead": "decdde6e061a0a4ccbdcb5c88a1e19d5a47e4099"
 }

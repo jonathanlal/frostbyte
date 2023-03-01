@@ -5,18 +5,20 @@
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "^6.5.1",
-    "prettier": "^2.8.3",
-    "eslint": "^8.17.0",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
+    "eslint": "^8.17.0",
     "eslint-plugin-react": "^7.30.0",
-    "eslint-plugin-react-hooks": "^4.5.0"
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "lerna": "^6.5.1",
+    "prettier": "^2.8.3"
   },
   "scripts": {
     "start": "npx lerna run start --scope=frostbyte",
     "build": "npx lerna run build --scope=frostbyte",
+    "generate": "npx lerna run generate --scope=frostbyte",
     "build:all": "npx lerna run build",
     "lerna:publish": "npx lerna publish --no-private"
-  }
+  },
+  "dependencies": {}
 }

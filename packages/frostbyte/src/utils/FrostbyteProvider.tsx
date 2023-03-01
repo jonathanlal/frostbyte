@@ -3,10 +3,12 @@ import { FrostbyteContext } from 'utils/FrostbyteContext';
 import { createTheme } from './getStyles';
 import { ConfigType } from '@stitches/react/types/config';
 import { darkThemeStyles } from 'styles/darkTheme';
+import { globalStyles } from 'styles/globalCss';
 
 export const FrostbyteProvider = ({
   customTheme,
   darkMode,
+  globalReset = true,
   children,
 }: {
   children: React.ReactNode;
@@ -19,7 +21,10 @@ export const FrostbyteProvider = ({
     hasDarkMode: boolean;
     isActive: boolean;
   };
+  globalReset?: boolean;
 }) => {
+  if (globalReset) globalStyles();
+
   if (darkMode && darkMode.hasDarkMode && darkMode.isActive) {
     const darkTheme = createTheme('dark-theme', darkThemeStyles);
     return (
