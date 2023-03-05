@@ -1,5 +1,6 @@
 import { FrostbyteConfigType } from 'types/frostbyteConfigType';
 import { colors } from './colors';
+import { shadowStyles } from './defaults/shadowStyles';
 
 export const defaultStyles: FrostbyteConfigType = {
   media: {
@@ -130,6 +131,7 @@ export const defaultStyles: FrostbyteConfigType = {
       1: 'rgba(0, 0, 0, 0.24) 0px 2px 10px',
       2: 'rgba(0, 0, 0, 0.44) 0px 2px 10px',
       3: 'rgba(0, 0, 0, 0.64) 0px 2px 10px',
+      ...shadowStyles,
     },
     fontWeights: {
       400: '400',

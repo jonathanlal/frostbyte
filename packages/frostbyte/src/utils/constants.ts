@@ -10,7 +10,7 @@ enum SIZES_ENUM {
 export const SIZES_ARRAY: string[] = Object.values(SIZES_ENUM);
 export type SIZES = `${SIZES_ENUM}`;
 
-enum KIND_ENUM {
+export enum KIND_ENUM {
   info = 'info',
   success = 'success',
   warning = 'warning',
@@ -34,3 +34,7 @@ export const RESPONSIVE_SIZES: Record<
 export type RESPONSIVE_ELEMENTS = keyof typeof RESPONSIVE_SIZES;
 
 export type COLORS = keyof typeof colors.default;
+export type COLORS_WITHOUT_KINDS = Exclude<
+  COLORS,
+  KINDS | 'black' | 'white' | 'grey'
+>;

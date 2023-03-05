@@ -9,6 +9,9 @@ export const globalStyles = globalCss({
   },
   'html, body': {
     height: '100%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    padding: 0,
   },
   body: {
     lineHeight: 'normal',
@@ -23,7 +26,7 @@ export const globalStyles = globalCss({
   'p, h1, h2, h3, h4, h5, h6 ': {
     overflowWrap: 'break-word',
   },
-  '#root': {
-    isolation: 'isolate',
-  },
+  // '#root': {
+  //   isolation: 'isolate',
+  // },
 });

@@ -2,7 +2,11 @@ import React from 'react';
 import type { VariantProps } from '@stitches/react';
 import { ReactNode } from 'react';
 import { styled } from 'utils/getStyles';
-import { KINDS } from 'utils/constants';
+import { COLORS_WITHOUT_KINDS, KINDS } from 'utils/constants';
+import { buttonColorVariants } from 'styles/variants/buttonColorVariants';
+import { buttonKindsVariants } from 'styles/variants/buttonKindsVariants';
+import { buttonKindsOutlinedCompoundVariants } from 'styles/variants/buttonKindsOutlinedCompoundVariants';
+import { buttonColorOutlinedCompoundVariants } from 'styles/variants/buttonColorOutlinedCompoundVariants';
 
 export type ButtonProps = VariantProps<typeof StyledButton> & {
   htmlFor?: string;
@@ -10,90 +14,100 @@ export type ButtonProps = VariantProps<typeof StyledButton> & {
 
 export const Button = ({
   children,
-  variant = 'primary',
+  kind = 'primary',
   size = 'md',
   type = 'button',
+  fullWidth = false,
+  borderRadius = 'sm',
+  outlined = false,
   ariaLabel,
+  color,
   onClick,
 }: {
   children: ReactNode;
-  variant?: KINDS;
-  size?: 'sm' | 'md';
+  kind?: KINDS;
+  size?: 'xl' | 'xs' | 'sm' | 'md' | 'lg';
   type?: 'button' | 'submit' | 'reset';
+  fullWidth?: boolean;
   ariaLabel?: string;
+  outlined?: boolean;
+  borderRadius?: 'sm' | 'md' | 'lg' | 'xl' | 'false';
+  color?: COLORS_WITHOUT_KINDS;
   onClick?: () => void;
 }) => (
-  <div style={{ display: 'block' }}>
-    <StyledButton
-      variant={variant}
-      size={size}
-      onClick={onClick}
-      type={type}
-      aria-label={ariaLabel}
-    >
-      {children}
-    </StyledButton>
-  </div>
+  <StyledButton
+    kind={!color ? kind : undefined}
+    size={size}
+    onClick={onClick}
+    type={type}
+    aria-label={ariaLabel}
+    fullWidth={fullWidth}
+    borderRadius={borderRadius}
+    outlined={outlined}
+    color={color}
+  >
+    {children}
+  </StyledButton>
 );
 
 const StyledButton = styled('button', {
-  all: 'unset',
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: 4,
-  fontWeight: 500,
-  color: '$white',
-  // cursor: 'pointer',
-  margin: 2,
-
-  '&:active, &:focus-visible  ': {
-    outline: '2px solid $green',
-    // outlineOffset: 1,
-  },
-
-  '&:hover, &:focus': {
-    opacity: 0.8,
-    cursor: 'pointer',
-  },
-
+  border: 'none',
+  compoundVariants: [
+    ...buttonKindsOutlinedCompoundVariants,
+    ...buttonColorOutlinedCompoundVariants,
+  ],
   variants: {
-    size: {
+    color: buttonColorVariants,
+    fullWidth: {
+      true: {
+        width: '100%',
+        textAlign: 'center',
+      },
+    },
+    borderRadius: {
+      false: {
+        borderRadius: 0,
+      },
       sm: {
-        fontSize: 12,
-        padding: '$p5 10px',
-        lineHeight: '25px',
-        // height: 25,
+        borderRadius: 4,
       },
       md: {
-        fontSize: '2rem',
-        padding: '$10 $20',
-        // padding: '0.5rem 1.8rem',
-        // lineHeight: '35px',
-        // height: 35,
+        borderRadius: 8,
+      },
+      lg: {
+        borderRadius: 12,
+      },
+      xl: {
+        borderRadius: 20,
       },
     },
-    variant: {
-      primary: {
-        backgroundColor: '$purple',
-      },
-      success: {
-        backgroundColor: '$green',
-      },
-      error: {
-        backgroundColor: '$red',
-      },
-      warning: {
-        backgroundColor: '$orange',
-      },
-      info: {
-        backgroundColor: '$blue',
+    outlined: {
+      true: {
+        backgroundColor: 'transparent',
       },
     },
-  },
-
-  defaultVariants: {
-    size: 'md',
-    variant: 'primary',
+    size: {
+      xs: {
+        fontSize: 18,
+        padding: '5px 12px',
+      },
+      sm: {
+        fontSize: 21,
+        padding: '7px 14px',
+      },
+      md: {
+        fontSize: 24,
+        padding: '9px 18px',
+      },
+      lg: {
+        fontSize: 27,
+        padding: '11px 22px',
+      },
+      xl: {
+        fontSize: 31,
+        padding: '15px 32px',
+      },
+    },
+    kind: buttonKindsVariants,
   },
 });
