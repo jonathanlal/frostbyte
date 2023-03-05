@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "start": "react-scripts start",
-    "build": "rollup -c && robocopy . ./dist README.md",
+    "build": "rollup -c -i src/entry.ts && robocopy . ./dist README.md",
     "generate": "ts-node src/gen/script.ts && npx prettier --write src/styles/variants/* src/styles/defaults/*"
   },
   "devDependencies": {
