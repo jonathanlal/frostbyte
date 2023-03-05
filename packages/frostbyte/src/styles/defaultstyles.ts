@@ -2,6 +2,17 @@ import { FrostbyteConfigType } from 'types/frostbyteConfigType';
 import { colors } from './colors';
 import { shadowStyles } from './defaults/shadowStyles';
 
+//move to script
+function generateFontSizes() {
+  const fontSizes: { [key: number]: string } = {};
+
+  for (let i = 12; i <= 70; i += 1) {
+    fontSizes[i] = `${i}px`;
+  }
+
+  return fontSizes;
+}
+
 export const defaultStyles: FrostbyteConfigType = {
   media: {
     sm: '(min-width: 640px)',
@@ -12,38 +23,7 @@ export const defaultStyles: FrostbyteConfigType = {
     colors: {
       ...colors.default,
     },
-    fontSizes: {
-      12: '12px',
-      14: '14px',
-      16: '16px',
-      18: '18px',
-      20: '20px',
-      22: '22px',
-      24: '24px',
-      26: '26px',
-      28: '28px',
-      30: '30px',
-      32: '32px',
-      34: '34px',
-      36: '36px',
-      38: '38px',
-      40: '40px',
-      42: '42px',
-      44: '44px',
-      46: '46px',
-      48: '48px',
-      50: '50px',
-      52: '52px',
-      54: '54px',
-      56: '56px',
-      58: '58px',
-      60: '60px',
-      62: '62px',
-      64: '64px',
-      66: '66px',
-      68: '68px',
-      70: '70px',
-    },
+    fontSizes: generateFontSizes(),
     borderWidths: {
       1: '1px',
       2: '2px',

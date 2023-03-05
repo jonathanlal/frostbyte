@@ -21,11 +21,11 @@ const StyledParagraph = styled('p', {
   },
 });
 
-type ParagraphProps = VariantProps<typeof StyledParagraph>;
-
-export const P = ({
-  children,
-  ...props
-}: ParagraphProps & {
+export type ParagraphProps = VariantProps<typeof StyledParagraph> & {
   children: ReactNode;
-}) => <StyledParagraph {...props}>{children}</StyledParagraph>;
+};
+
+//todo if responsive is set then size should be ignored
+export const P = ({ children, ...props }: ParagraphProps) => (
+  <StyledParagraph {...props}>{children}</StyledParagraph>
+);

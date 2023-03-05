@@ -7,8 +7,8 @@ enum SIZES_ENUM {
   lg = 'lg',
   xl = 'xl',
 }
-export const SIZES_ARRAY: string[] = Object.values(SIZES_ENUM);
 export type SIZES = `${SIZES_ENUM}`;
+export const SIZES_ARRAY: SIZES[] = Object.values(SIZES_ENUM);
 
 export enum KIND_ENUM {
   info = 'info',

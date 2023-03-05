@@ -17,6 +17,7 @@
     "start": "npx lerna run start --scope=frostbyte",
     "build": "npx lerna run build --scope=frostbyte",
     "generate": "npx lerna run generate --scope=frostbyte",
+    "ladle": "npx lerna run dev --scope=ladle",
     "build:all": "npx lerna run build",
     "lerna:publish": "npx lerna publish --no-private"
   },
