@@ -15,11 +15,14 @@
   },
   "scripts": {
     "start": "npx lerna run start --scope=frostbyte",
+    "build:ladle": "npx lerna run build --scope=ladle",
     "build": "npx lerna run build --scope=frostbyte",
     "generate": "npx lerna run generate --scope=frostbyte",
     "ladle": "npx lerna run dev --scope=ladle",
     "build:all": "npx lerna run build",
     "lerna:publish": "npx lerna publish --no-private"
   },
-  "dependencies": {}
+  "dependencies": {
+    "nx-ignore": "^15.6.0"
+  }
 }
