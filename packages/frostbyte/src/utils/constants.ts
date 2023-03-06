@@ -34,7 +34,12 @@ export const RESPONSIVE_SIZES: Record<
 export type RESPONSIVE_ELEMENTS = keyof typeof RESPONSIVE_SIZES;
 
 export type COLORS = keyof typeof colors.default;
+export const COLORS_ARRAY = Object.keys(colors.default) as COLORS[];
 export type COLORS_WITHOUT_KINDS = Exclude<
   COLORS,
   KINDS | 'black' | 'white' | 'grey'
 >;
+
+export const COLORS_WITHOUT_KINDS_ARRAY = Object.keys(
+  colors.default
+) as COLORS_WITHOUT_KINDS[];

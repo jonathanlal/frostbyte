@@ -16,16 +16,12 @@ const StyledParagraph = styled('p', {
     size: fontSizeVariants,
     weight: fontWeightVariants,
   },
-  defaultVariants: {
-    responsive: 'md',
-  },
 });
 
 export type ParagraphProps = VariantProps<typeof StyledParagraph> & {
   children: ReactNode;
 };
 
-//todo if responsive is set then size should be ignored
 export const P = ({ children, ...props }: ParagraphProps) => (
   <StyledParagraph {...props}>{children}</StyledParagraph>
 );

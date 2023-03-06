@@ -10,24 +10,16 @@ export type HeaderProps = {
   responsive?: SIZES;
   color?: COLORS;
   size?: keyof typeof fontSizeVariants;
+  children: React.ReactNode;
 };
 
-export const H = ({
-  children,
-  as = 'h1',
-  ...props
-}: HeaderProps & {
-  children: React.ReactNode;
-}) => {
+export const H = ({ children, as = 'h1', ...props }: HeaderProps) => {
   //either this (which is a small performance hit) or 6 different components H1, H2, H3, H4, H5, H6
   const Styledheader = styled(as, {
     variants: {
       responsive: responsiveFontSizeVariants[as],
       color: colorVariants,
       size: fontSizeVariants,
-    },
-    defaultVariants: {
-      responsive: 'md',
     },
   });
 
