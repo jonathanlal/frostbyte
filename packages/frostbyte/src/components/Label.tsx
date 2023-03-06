@@ -23,11 +23,9 @@ const StyledLabel = styled('label', {
 
 export type LabelProps = VariantProps<typeof StyledLabel> & {
   htmlFor?: string;
+  children: React.ReactNode;
 };
 
-export const Label = ({
-  children,
-  ...props
-}: LabelProps & {
-  children: React.ReactNode;
-}) => <StyledLabel {...props}>{children}</StyledLabel>;
+export const Label = ({ children, ...props }: LabelProps) => (
+  <StyledLabel {...props}>{children}</StyledLabel>
+);

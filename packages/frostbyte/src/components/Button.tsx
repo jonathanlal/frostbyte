@@ -10,6 +10,11 @@ import { buttonColorOutlinedCompoundVariants } from 'styles/variants/buttonColor
 
 export type ButtonProps = VariantProps<typeof StyledButton> & {
   htmlFor?: string;
+  children: ReactNode;
+  type?: 'button' | 'submit' | 'reset';
+  ariaLabel?: string;
+  onClick?: () => void;
+  color?: COLORS_WITHOUT_KINDS;
 };
 
 export const Button = ({
@@ -23,18 +28,19 @@ export const Button = ({
   ariaLabel,
   color,
   onClick,
-}: {
-  children: ReactNode;
-  kind?: KINDS;
-  size?: 'xl' | 'xs' | 'sm' | 'md' | 'lg';
-  type?: 'button' | 'submit' | 'reset';
-  fullWidth?: boolean;
-  ariaLabel?: string;
-  outlined?: boolean;
-  borderRadius?: 'sm' | 'md' | 'lg' | 'xl' | 'false';
-  color?: COLORS_WITHOUT_KINDS;
-  onClick?: () => void;
-}) => (
+}: ButtonProps) => (
+  // {
+  // children: ReactNode;
+  // kind?: KINDS;
+  // size?: 'xl' | 'xs' | 'sm' | 'md' | 'lg';
+  // type?: 'button' | 'submit' | 'reset';
+  // fullWidth?: boolean;
+  // ariaLabel?: string;
+  // outlined?: boolean;
+  // borderRadius?: 'sm' | 'md' | 'lg' | 'xl' | 'false';
+  // color?: COLORS_WITHOUT_KINDS;
+  // onClick?: () => void;
+  // }
   <StyledButton
     kind={!color ? kind : undefined}
     size={size}

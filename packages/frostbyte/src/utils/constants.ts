@@ -19,6 +19,8 @@ export enum KIND_ENUM {
 }
 export type KINDS = keyof typeof KIND_ENUM;
 
+export const KINDS_ARRAY: KINDS[] = Object.values(KIND_ENUM);
+
 export const RESPONSIVE_SIZES: Record<
   'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p',
   { min: number; max: number; pref: number }

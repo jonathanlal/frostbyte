@@ -5,12 +5,12 @@ import { styled } from 'utils/getStyles';
 import type { VariantProps } from '@stitches/react';
 import { PrefixedLabelProps } from 'types/propTypes';
 
-type SwitchProps = VariantProps<typeof SwitchRoot> & {
+export type SwitchProps = VariantProps<typeof SwitchRoot> & {
   setChecked: Dispatch<SetStateAction<boolean>>;
   checked: boolean;
   label?: string;
   labelFor?: string;
-} & PrefixedLabelProps;
+} & Exclude<PrefixedLabelProps, 'labelChildren'>;
 
 /**
  *
@@ -78,8 +78,8 @@ const SwitchRoot = styled(SwitchPrimitive.Root, {
   position: 'relative',
   boxShadow: `$1`,
   WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
-  '&[data-state="checked"]': { backgroundColor: '$green' },
-  '&[data-state="unchecked"]': { backgroundColor: '$red' },
+  '&[data-state="checked"]': { backgroundColor: '$success' },
+  '&[data-state="unchecked"]': { backgroundColor: '$error' },
   '&:hover': { cursor: 'pointer' },
 });
 
