@@ -17,6 +17,7 @@ import {
 } from 'utils/FrostbyteProvider';
 import { Button, ButtonProps } from 'components/Button';
 import { useFrostbyte } from 'hooks/useFrostbyte';
+import { brandColors } from 'styles/colors';
 
 export {
   styled,
@@ -39,4 +40,5 @@ export {
   KINDS_ARRAY,
   COLORS_OBJECT_DARK,
   COLORS_OBJECT,
+  brandColors,
 };

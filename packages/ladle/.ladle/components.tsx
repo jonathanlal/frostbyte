@@ -1,6 +1,6 @@
 import type { GlobalProvider } from '@ladle/react';
-import { FrostbyteProvider } from 'frostbyte';
-import React, { useEffect, useState } from 'react';
+import { COLORS_OBJECT, FrostbyteProvider } from 'frostbyte';
+import React, { useState } from 'react';
 import { CustomThemeSelect } from './CustomThemeSelect';
 
 export const Provider: GlobalProvider = ({
@@ -10,42 +10,82 @@ export const Provider: GlobalProvider = ({
 }) => {
   const [hasDarkMode, setHasDarkMode] = useState(false);
   const [isCustomThemeOn, setIsCustomThemeOn] = useState(false);
-  const [primary, setPrimary] = useState<string | null>(null);
+  const [customThemeDropdown, setCustomThemeDropdown] = useState(false);
+  const [removeChangeThemeButton, setRemoveChangeThemeButton] = useState(false);
+  const [removeRestoreThemeButton, setRemoveRestoreThemeButton] =
+    useState(false);
+
+  const defaultThemeColors = {
+    primary: COLORS_OBJECT['primary'],
+    success: COLORS_OBJECT['success'],
+    error: COLORS_OBJECT['error'],
+    warning: COLORS_OBJECT['warning'],
+    info: COLORS_OBJECT['info'],
+  };
 
   const [customTheme, setCustomTheme] = useState({
     name: 'customTheme',
     theme: {
-      colors: {
-        primary: '$yellow1',
-        success: '$blue8',
-        error: '$plum4',
-        warning: '$green4',
-        info: '$brown6',
-      },
+      colors: defaultThemeColors,
     },
     isActive: true,
   });
 
-  console.log('customTheme', customTheme);
+  const modifyThemeColors = () => {
+    setIsCustomThemeOn(!isCustomThemeOn);
+    setCustomThemeDropdown(false);
+    setRemoveChangeThemeButton(true);
+  };
+
+  const restoreTheme = () => {
+    setCustomTheme({
+      name: 'customTheme',
+      theme: {
+        colors: defaultThemeColors,
+      },
+      isActive: false,
+    });
+    setRemoveRestoreThemeButton(true);
+  };
+
+  const hasChangedColors =
+    JSON.stringify(defaultThemeColors) !==
+    JSON.stringify(customTheme.theme.colors);
+
   return (
     <>
       <button onClick={() => setHasDarkMode(!hasDarkMode)}>
         hasDarkMode: {hasDarkMode.toString()}
       </button>
 
-      <button onClick={() => setIsCustomThemeOn(!isCustomThemeOn)}>
-        hasCustomTheme: {isCustomThemeOn.toString()}
-      </button>
+      {!removeChangeThemeButton ? (
+        <button onClick={() => setCustomThemeDropdown(!customThemeDropdown)}>
+          modifyThemeColors
+        </button>
+      ) : (
+        <>
+          {!removeRestoreThemeButton ? (
+            <button onClick={restoreTheme}>change theme back to default</button>
+          ) : (
+            <button onClick={() => window.location.reload()}>
+              refresh page for custom theme change
+            </button>
+          )}
+        </>
+      )}
 
-      <button onClick={() => setPrimary('$red11')}>setPrimary to red</button>
-      <button onClick={() => setPrimary('$sky11')}>setPrimary to blue</button>
-
-      <CustomThemeSelect
-        setCustomTheme={setCustomTheme}
-        customTheme={customTheme}
-        isDarkMode={globalState.theme === 'dark'}
-      />
-
+      {customThemeDropdown && (
+        <>
+          <CustomThemeSelect
+            setCustomTheme={setCustomTheme}
+            customTheme={customTheme}
+            isDarkMode={globalState.theme === 'dark'}
+          />
+          <button onClick={modifyThemeColors} disabled={!hasChangedColors}>
+            hasCustomTheme: {isCustomThemeOn.toString()}
+          </button>
+        </>
+      )}
       <FrostbyteProvider
         darkMode={{
           hasDarkMode: hasDarkMode,
