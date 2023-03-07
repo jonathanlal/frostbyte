@@ -41,6 +41,8 @@ export type COLORS_WITHOUT_KINDS = Exclude<
   COLORS,
   KINDS | 'black' | 'white' | 'grey'
 >;
+export const COLORS_OBJECT = colors.default;
+export const COLORS_OBJECT_DARK = colors.dark;
 
 export const COLORS_WITHOUT_KINDS_ARRAY = Object.keys(
   colors.default

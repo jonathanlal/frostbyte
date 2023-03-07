@@ -1,8 +1,16 @@
 import type { Story } from '@ladle/react';
-import { Switch, SwitchProps, COLORS_WITHOUT_KINDS_ARRAY } from 'frostbyte';
+import {
+  Switch,
+  SwitchProps,
+  COLORS_WITHOUT_KINDS_ARRAY,
+  // useFrostbyte,
+} from 'frostbyte';
 import { useState } from 'react';
 export const SwitchC: Story<SwitchProps> = ({ ...props }) => {
   const [on, setOn] = useState(true);
+  // console.log('test1');
+  // const test = useFrostbyte();
+  // console.log('test', test);
 
   return (
     <>

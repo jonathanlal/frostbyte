@@ -15,8 +15,8 @@
   },
   "scripts": {
     "start": "npx lerna run start --scope=frostbyte",
-    "build:ladle": "npx lerna run build --scope=ladle --ignore=frostbyte",
-    "build": "npx lerna run build --scope=frostbyte",
+    "build:ladle": "npx lerna run build --scope=ladle",
+    "build": "npx lerna run build --scope=frostbyte --skip-nx-cache",
     "generate": "npx lerna run generate --scope=frostbyte",
     "ladle": "npx lerna run dev --scope=ladle",
     "build:all": "npx lerna run build",

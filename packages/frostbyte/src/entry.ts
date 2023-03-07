@@ -8,9 +8,15 @@ import {
   COLORS_WITHOUT_KINDS_ARRAY,
   COLORS_ARRAY,
   KINDS_ARRAY,
+  COLORS_OBJECT,
+  COLORS_OBJECT_DARK,
 } from 'utils/constants';
-import { FrostbyteProvider } from 'utils/FrostbyteProvider';
+import {
+  FrostbyteProvider,
+  FrostbyteProviderProps,
+} from 'utils/FrostbyteProvider';
 import { Button, ButtonProps } from 'components/Button';
+import { useFrostbyte } from 'hooks/useFrostbyte';
 
 export {
   styled,
@@ -21,7 +27,9 @@ export {
   LabelProps,
   Switch,
   SwitchProps,
+  useFrostbyte,
   FrostbyteProvider,
+  FrostbyteProviderProps,
   ParagraphProps,
   Button,
   ButtonProps,
@@ -29,4 +37,6 @@ export {
   COLORS_WITHOUT_KINDS_ARRAY,
   COLORS_ARRAY,
   KINDS_ARRAY,
+  COLORS_OBJECT_DARK,
+  COLORS_OBJECT,
 };
