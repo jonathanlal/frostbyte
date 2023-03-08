@@ -1,56 +1,111 @@
-import React, { Key, useEffect } from 'react';
+import React from 'react';
 import { FrostbyteContext } from 'utils/FrostbyteContext';
-import { createTheme } from './getStyles';
+import { createTheme, config } from './getStyles';
 import { ConfigType } from '@stitches/react/types/config';
-import { darkThemeStyles } from 'styles/darkTheme';
+import { darkThemeStyles as defaultDarkTheme } from 'styles/darkTheme';
+import { reset as resetTheme } from 'utils/getStyles';
 import { globalStyles } from 'styles/globalCss';
 
-export type CustomThemeType = {
-  name: string;
-  theme: ConfigType.Theme;
-  isActive?: boolean; //remove isActive after testing (they either pass a customTheme or not)
-} | null;
+export type CustomThemeType = ConfigType.Theme | undefined | null;
 
 export interface FrostbyteProviderProps {
   children: React.ReactNode;
   customTheme?: CustomThemeType;
-  darkMode?: {
-    hasDarkMode: boolean;
-    isActive: boolean;
-  };
-  globalReset?: boolean;
+  customDarkTheme?: CustomThemeType;
+  isCustomThemeActive?: boolean;
+  isDarkThemeActive?: boolean;
+  shouldResetGlobalStyles?: boolean;
+  shouldForceThemeReset?: boolean;
 }
+
+/**
+ * if isDarkThemeActive is true, and custom theme is defined but no custom dark theme is defined, then the custom theme color keys will also be used in dark theme (as long as isCustomThemeActive is also true)
+ * use customDarkTheme if you want to have a different color keys ($red8, $blue8 etc..) for dark theme (otherwise color keys will be the same as customTheme)
+ *
+ * shouldForceThemeReset: if true, will force the theme to be reloaded on every render (useful for when you want to change the theme dynamically)
+ */
 export const FrostbyteProvider = ({
   customTheme,
-  darkMode,
-  globalReset = true,
+  customDarkTheme,
+  isCustomThemeActive = false,
+  isDarkThemeActive = false,
+  shouldResetGlobalStyles = true,
+  shouldForceThemeReset = false,
   children,
 }: FrostbyteProviderProps) => {
-  if (globalReset) globalStyles();
+  if (shouldResetGlobalStyles) globalStyles();
 
-  if (darkMode && darkMode.hasDarkMode && darkMode.isActive) {
-    const darkTheme = createTheme('dark-theme', darkThemeStyles);
+  if (shouldForceThemeReset) resetTheme();
+
+  if (isDarkThemeActive) {
+    let darkThemeStyles;
+    if (customDarkTheme) {
+      darkThemeStyles = customDarkTheme;
+    } else if (customTheme && isCustomThemeActive) {
+      darkThemeStyles = customTheme;
+    } else {
+      darkThemeStyles = defaultDarkTheme;
+    }
+    const darkThemeName = 'darkTheme';
+    const darkTheme = createTheme(darkThemeName, darkThemeStyles);
+
+    const colorKinds = {
+      primary: darkThemeStyles?.colors?.['primary'] as string,
+      success: darkThemeStyles?.colors?.['success'] as string,
+      error: darkThemeStyles?.colors?.['error'] as string,
+      warning: darkThemeStyles?.colors?.['warning'] as string,
+      info: darkThemeStyles?.colors?.['info'] as string,
+    };
     return (
-      <FrostbyteContext.Provider value={{ something: '' }}>
+      <FrostbyteContext.Provider
+        value={{
+          currentTheme: darkThemeName,
+          colorKinds,
+        }}
+      >
         <div className={darkTheme}>{children}</div>
       </FrostbyteContext.Provider>
     );
   }
 
-  //remove isActive after testing (they either pass a customTheme or not)
-  if (customTheme && customTheme.isActive) {
-    const theme = createTheme(customTheme.name, customTheme.theme);
+  if (isCustomThemeActive && customTheme) {
+    const customThemeName = 'customTheme';
+    const theme = createTheme(customThemeName, customTheme);
+    const colorKinds = {
+      primary: customTheme.colors?.['primary'] as string,
+      success: customTheme.colors?.['success'] as string,
+      error: customTheme.colors?.['error'] as string,
+      warning: customTheme.colors?.['warning'] as string,
+      info: customTheme.colors?.['info'] as string,
+    };
     return (
-      <FrostbyteContext.Provider value={{ something: '' }}>
-        <div key={theme.className} className={theme}>
-          {children}
-        </div>
+      <FrostbyteContext.Provider
+        value={{
+          currentTheme: customThemeName,
+          colorKinds,
+        }}
+      >
+        <div className={theme}>{children}</div>
       </FrostbyteContext.Provider>
     );
   }
 
+  const defaultTheme = config.theme as ConfigType.Theme;
+  const colorKinds = {
+    primary: defaultTheme.colors?.['primary'] as string,
+    success: defaultTheme.colors?.['success'] as string,
+    error: defaultTheme.colors?.['error'] as string,
+    warning: defaultTheme.colors?.['warning'] as string,
+    info: defaultTheme.colors?.['info'] as string,
+  };
+
   return (
-    <FrostbyteContext.Provider value={{ something: '' }}>
+    <FrostbyteContext.Provider
+      value={{
+        currentTheme: 'defaultTheme',
+        colorKinds,
+      }}
+    >
       {children}
     </FrostbyteContext.Provider>
   );

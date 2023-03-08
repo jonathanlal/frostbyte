@@ -6,7 +6,7 @@ import {
   RESPONSIVE_SIZES,
   SIZES_ARRAY,
 } from '../utils/constants.js';
-import { brandColors, colors } from '../styles/colors.js'; // wtf tsconfig paths not working
+import { colors } from '../styles/colors.js'; // wtf tsconfig paths not working
 
 const outputDir = 'src/styles/variants/';
 
@@ -30,7 +30,7 @@ const getColorsWithoutKinds = () => {
 };
 
 function getCorrespondingBtnFontColor(
-  colorKey: COLORS,
+  colorKey: string,
   excludeExceptions = false
 ) {
   const num = parseInt(colorKey.match(/\d+/)[0]);
@@ -97,7 +97,7 @@ function getCorrespondingBtnFontColor(
 const createShadowStyles = () => {
   const shadowStyles = {};
   Object.entries(colors.default).forEach(([key]) => {
-    const colorKey = key as COLORS;
+    const colorKey = key as string;
     shadowStyles[colorKey] = `$colors$${colorKey} 0px 2px 10px`;
   });
   return shadowStyles;
@@ -106,7 +106,7 @@ const createShadowStyles = () => {
 export const createButtonColorVariants = () =>
   Object.fromEntries(
     Object.entries(getColorsWithoutKinds()).map(([key]) => {
-      const colorKey = key as COLORS;
+      const colorKey = key as string;
       // if (/\d/.test(colorKey)) {
       const textColor = getCorrespondingBtnFontColor(colorKey);
 
@@ -131,15 +131,13 @@ export const createButtonColorVariants = () =>
 const createButtonKindsVariants = () =>
   Object.fromEntries(
     Object.values(KIND_ENUM).map((kind) => {
-      const brandColor = brandColors[kind];
-      const color = brandColor.replace(/[0-9]/g, '');
       return [
         kind as KINDS,
         {
           backgroundColor: `$${kind}`,
-          color: `${color}12`,
+          color: `$${kind}Contrast`,
           '&:active, &:focus-visible': {
-            outlineColor: `${color}12`,
+            outlineColor: `$${kind}Contrast`,
           },
           '&:hover, &:focus': {
             transform: 'translateY(-2px)',
@@ -154,9 +152,9 @@ const createButtonKindsVariants = () =>
 
 const createButtonColorOutlinedCompoundVariants = () =>
   Object.entries(getColorsWithoutKinds()).map(([key]) => {
-    const colorKey = key as COLORS;
+    const colorKey = key as string;
     if (/\d/.test(colorKey)) {
-      const textColor = getCorrespondingBtnFontColor(colorKey as COLORS, true);
+      const textColor = getCorrespondingBtnFontColor(colorKey, true);
       return {
         color: colorKey,
         outlined: true,
@@ -178,22 +176,45 @@ const createButtonColorOutlinedCompoundVariants = () =>
     }
   });
 
+//check if outline is correct with custom theme
+// const createButtonKindOutlinedCompoundVariants = () =>
+//   Object.values(KIND_ENUM).map((kind) => {
+//     const brandColor = brandColors[kind];
+//     const color = brandColor.replace(/[0-9]/g, '');
+//     return {
+//       kind: kind as KINDS,
+//       outlined: true,
+//       css: {
+//         color: `${color}11`,
+//         border: `3px solid $${kind}`,
+//         backgroundColor: 'transparent',
+//         '&:active, &:focus-visible': { outlineColor: `${color}12` },
+//         '&:hover, &:focus': {
+//           transform: 'translateY(-2px)',
+//           backgroundColor: `$${kind}`,
+//           color: `${color}12`,
+//           boxShadow: `$${kind}`,
+//           cursor: 'pointer',
+//           transition: 'all 0.3s ease',
+//         },
+//       },
+//     };
+//   });
+
 const createButtonKindOutlinedCompoundVariants = () =>
   Object.values(KIND_ENUM).map((kind) => {
-    const brandColor = brandColors[kind];
-    const color = brandColor.replace(/[0-9]/g, '');
     return {
       kind: kind as KINDS,
       outlined: true,
       css: {
-        color: `${color}11`,
+        color: `$${kind}Contrast`,
         border: `3px solid $${kind}`,
         backgroundColor: 'transparent',
-        '&:active, &:focus-visible': { outlineColor: `${color}12` },
+        '&:active, &:focus-visible': { outlineColor: `$${kind}Contrast` },
         '&:hover, &:focus': {
           transform: 'translateY(-2px)',
           backgroundColor: `$${kind}`,
-          color: `${color}12`,
+          color: `$${kind}Contrast`,
           boxShadow: `$${kind}`,
           cursor: 'pointer',
           transition: 'all 0.3s ease',

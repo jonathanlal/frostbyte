@@ -2,11 +2,14 @@ import React from 'react';
 import type { VariantProps } from '@stitches/react';
 import { ReactNode } from 'react';
 import { styled } from 'utils/getStyles';
-import { COLORS_WITHOUT_KINDS, KINDS } from 'utils/constants';
+import { COLORS_WITHOUT_KINDS } from 'utils/constants';
 import { buttonColorVariants } from 'styles/variants/buttonColorVariants';
 import { buttonKindsVariants } from 'styles/variants/buttonKindsVariants';
 import { buttonKindsOutlinedCompoundVariants } from 'styles/variants/buttonKindsOutlinedCompoundVariants';
 import { buttonColorOutlinedCompoundVariants } from 'styles/variants/buttonColorOutlinedCompoundVariants';
+import { useFrostbyte } from 'hooks/useFrostbyte';
+import { brandColors } from 'styles/colors';
+import type * as Stitches from '@stitches/react';
 
 export type ButtonProps = VariantProps<typeof StyledButton> & {
   htmlFor?: string;
@@ -28,33 +31,57 @@ export const Button = ({
   ariaLabel,
   color,
   onClick,
-}: ButtonProps) => (
-  // {
-  // children: ReactNode;
-  // kind?: KINDS;
-  // size?: 'xl' | 'xs' | 'sm' | 'md' | 'lg';
-  // type?: 'button' | 'submit' | 'reset';
-  // fullWidth?: boolean;
-  // ariaLabel?: string;
-  // outlined?: boolean;
-  // borderRadius?: 'sm' | 'md' | 'lg' | 'xl' | 'false';
-  // color?: COLORS_WITHOUT_KINDS;
-  // onClick?: () => void;
+}: ButtonProps) => {
+  const { colorKinds, currentTheme } = useFrostbyte();
+
+  const customCSS: Stitches.CSS = {};
+
+  const colorKindsArr = Object.entries(colorKinds);
+
+  // if (!outlined) {
+  colorKindsArr.forEach(([colorKind, colorKey]) => {
+    if (colorKey !== brandColors[colorKind as keyof typeof brandColors]) {
+      const customKindContrast = colorKey.replace(/\d+/g, '12');
+      customCSS[`$colors$${colorKind}`] = `$colors${colorKey}`;
+      customCSS[`$shadows$${colorKind}`] = `$shadows${colorKey}`;
+      customCSS[
+        `$colors$${colorKind}Contrast`
+      ] = `$colors${customKindContrast}`;
+    }
+  });
+  // } else {
+  // if(currentTheme === 'darkTheme') {
+
+  //   const textColor = currentTheme === 'darkTheme' ? '1' : '12'; //need a new css variable for this i think... otherwise will change others too
+  //   colorKindsArr.forEach(([colorKind, colorKey]) => {
+  //     if (colorKey !== brandColors[colorKind as keyof typeof brandColors]) {
+  //       const customKindContrast = colorKey.replace(/\d+/g, textColor);
+  //       customCSS[`$colors$${colorKind}`] = `$colors${colorKey}`;
+  //       customCSS[`$shadows$${colorKind}`] = `$shadows${colorKey}`;
+  //       customCSS[
+  //         `$colors$${colorKind}Contrast`
+  //       ] = `$colors${customKindContrast}`;
+  //     }
+  //   });
   // }
-  <StyledButton
-    kind={!color ? kind : undefined}
-    size={size}
-    onClick={onClick}
-    type={type}
-    aria-label={ariaLabel}
-    fullWidth={fullWidth}
-    borderRadius={borderRadius}
-    outlined={outlined}
-    color={color}
-  >
-    {children}
-  </StyledButton>
-);
+
+  return (
+    <StyledButton
+      kind={!color ? kind : undefined}
+      size={size}
+      onClick={onClick}
+      type={type}
+      aria-label={ariaLabel}
+      fullWidth={fullWidth}
+      borderRadius={borderRadius}
+      outlined={outlined}
+      color={color}
+      css={customCSS}
+    >
+      {children}
+    </StyledButton>
+  );
+};
 
 const StyledButton = styled('button', {
   border: 'none',

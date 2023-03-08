@@ -94,35 +94,23 @@ const colourStyles: StylesConfig<ColourOption> = {
 };
 
 export const CustomThemeSelect = ({
-  setCustomTheme,
-  customTheme,
+  setCustomThemeColors,
+  customThemeColors,
   isDarkMode,
 }: {
-  setCustomTheme: (customTheme: {
-    name: string;
-    theme: {
-      colors: {
-        primary: string;
-        success: string;
-        error: string;
-        warning: string;
-        info: string;
-      };
-    };
-    isActive: boolean;
+  setCustomThemeColors: (customTheme: {
+    primary: string;
+    success: string;
+    error: string;
+    warning: string;
+    info: string;
   }) => void;
-  customTheme: {
-    name: string;
-    theme: {
-      colors: {
-        primary: string;
-        success: string;
-        error: string;
-        warning: string;
-        info: string;
-      };
-    };
-    isActive: boolean;
+  customThemeColors: {
+    primary: string;
+    success: string;
+    error: string;
+    warning: string;
+    info: string;
   };
   isDarkMode: boolean;
 }) => {
@@ -131,7 +119,7 @@ export const CustomThemeSelect = ({
 
   const SelectKind = ({ kind }: { kind: string }) => {
     const currentValue = colourOptions.find(
-      (option) => option.value === customTheme.theme.colors[kind]
+      (option) => option.value === customThemeColors[kind]
     );
 
     return (
@@ -148,11 +136,7 @@ export const CustomThemeSelect = ({
   };
 
   const changeColor = (e: ColourOption, kind: string) => {
-    setCustomTheme({
-      name: customTheme.name,
-      theme: { colors: { ...customTheme.theme.colors, [kind]: e.value } },
-      isActive: true,
-    });
+    setCustomThemeColors({ ...customThemeColors, [kind]: e.value });
   };
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>

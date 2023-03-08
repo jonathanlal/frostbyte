@@ -1,4 +1,5 @@
-import { colors } from '../styles/colors.js'; //leave like this otherwise gen script will break
+import { colors } from '../styles/colors.js'; //leave like this otherwise gen script will break //fix this somehow
+// import { colors } from 'styles/colors'; //in development
 
 enum SIZES_ENUM {
   xs = 'xs',
@@ -39,7 +40,15 @@ export type COLORS = keyof typeof colors.default;
 export const COLORS_ARRAY = Object.keys(colors.default) as COLORS[];
 export type COLORS_WITHOUT_KINDS = Exclude<
   COLORS,
-  KINDS | 'black' | 'white' | 'grey'
+  | KINDS
+  | 'black'
+  | 'white'
+  | 'grey'
+  | 'primaryContrast'
+  | 'errorContrast'
+  | 'successContrast'
+  | 'infoContrast'
+  | 'warningContrast'
 >;
 export const COLORS_OBJECT = colors.default;
 export const COLORS_OBJECT_DARK = colors.dark;

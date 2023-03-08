@@ -53,6 +53,11 @@ export const brandColors = {
   info: '$sky8',
   error: '$tomato8',
   warning: '$amber8',
+  primaryContrast: '$purple12',
+  successContrast: '$grass12',
+  infoContrast: '$sky12',
+  errorContrast: '$tomato12',
+  warningContrast: '$amber12',
 };
 
 export const colors = {

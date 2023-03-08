@@ -16,7 +16,6 @@ import {
   FrostbyteProviderProps,
 } from 'utils/FrostbyteProvider';
 import { Button, ButtonProps } from 'components/Button';
-import { useFrostbyte } from 'hooks/useFrostbyte';
 import { brandColors } from 'styles/colors';
 
 export {
@@ -28,7 +27,6 @@ export {
   LabelProps,
   Switch,
   SwitchProps,
-  useFrostbyte,
   FrostbyteProvider,
   FrostbyteProviderProps,
   ParagraphProps,

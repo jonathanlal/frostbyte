@@ -1,19 +1,28 @@
-import type { GlobalProvider } from '@ladle/react';
+import {
+  GlobalProvider,
+  useLadleContext,
+  ActionType,
+  ThemeState,
+} from '@ladle/react';
 import { COLORS_OBJECT, FrostbyteProvider } from 'frostbyte';
 import React, { useState } from 'react';
 import { CustomThemeSelect } from './CustomThemeSelect';
 
-export const Provider: GlobalProvider = ({
-  children,
-  globalState,
-  storyMeta,
-}) => {
-  const [hasDarkMode, setHasDarkMode] = useState(false);
+export const Provider: GlobalProvider = ({ children, storyMeta }) => {
   const [isCustomThemeOn, setIsCustomThemeOn] = useState(false);
-  const [customThemeDropdown, setCustomThemeDropdown] = useState(false);
-  const [removeChangeThemeButton, setRemoveChangeThemeButton] = useState(false);
-  const [removeRestoreThemeButton, setRemoveRestoreThemeButton] =
-    useState(false);
+
+  const { globalState, dispatch } = useLadleContext();
+
+  const toggleDarkMode = () => {
+    dispatch({
+      type: ActionType.UpdateTheme,
+      value:
+        globalState.theme === ThemeState.Dark
+          ? ThemeState.Light
+          : ThemeState.Dark,
+    });
+  };
+  const isDarkThemeActive = globalState.theme === ThemeState.Dark;
 
   const defaultThemeColors = {
     primary: COLORS_OBJECT['primary'],
@@ -23,75 +32,32 @@ export const Provider: GlobalProvider = ({
     info: COLORS_OBJECT['info'],
   };
 
-  const [customTheme, setCustomTheme] = useState({
-    name: 'customTheme',
-    theme: {
-      colors: defaultThemeColors,
-    },
-    isActive: true,
-  });
-
-  const modifyThemeColors = () => {
-    setIsCustomThemeOn(!isCustomThemeOn);
-    setCustomThemeDropdown(false);
-    setRemoveChangeThemeButton(true);
-  };
-
-  const restoreTheme = () => {
-    setCustomTheme({
-      name: 'customTheme',
-      theme: {
-        colors: defaultThemeColors,
-      },
-      isActive: false,
-    });
-    setRemoveRestoreThemeButton(true);
-  };
-
-  const hasChangedColors =
-    JSON.stringify(defaultThemeColors) !==
-    JSON.stringify(customTheme.theme.colors);
+  const [customThemeColors, setCustomThemeColors] =
+    useState(defaultThemeColors);
 
   return (
     <>
-      <button onClick={() => setHasDarkMode(!hasDarkMode)}>
-        hasDarkMode: {hasDarkMode.toString()}
+      <button onClick={() => toggleDarkMode()}>
+        isDarkThemeActive: {isDarkThemeActive.toString()}
       </button>
 
-      {!removeChangeThemeButton ? (
-        <button onClick={() => setCustomThemeDropdown(!customThemeDropdown)}>
-          modifyThemeColors
-        </button>
-      ) : (
-        <>
-          {!removeRestoreThemeButton ? (
-            <button onClick={restoreTheme}>change theme back to default</button>
-          ) : (
-            <button onClick={() => window.location.reload()}>
-              refresh page for custom theme change
-            </button>
-          )}
-        </>
-      )}
+      <button onClick={() => setIsCustomThemeOn(!isCustomThemeOn)}>
+        customTheme: {isCustomThemeOn.toString()}
+      </button>
 
-      {customThemeDropdown && (
-        <>
-          <CustomThemeSelect
-            setCustomTheme={setCustomTheme}
-            customTheme={customTheme}
-            isDarkMode={globalState.theme === 'dark'}
-          />
-          <button onClick={modifyThemeColors} disabled={!hasChangedColors}>
-            hasCustomTheme: {isCustomThemeOn.toString()}
-          </button>
-        </>
-      )}
+      <CustomThemeSelect
+        setCustomThemeColors={setCustomThemeColors}
+        customThemeColors={customThemeColors}
+        isDarkMode={isDarkThemeActive}
+      />
+
       <FrostbyteProvider
-        darkMode={{
-          hasDarkMode: hasDarkMode,
-          isActive: globalState.theme === 'dark',
+        isDarkThemeActive={globalState.theme === 'dark'}
+        customTheme={{
+          colors: customThemeColors,
         }}
-        customTheme={isCustomThemeOn ? customTheme : null}
+        isCustomThemeActive={isCustomThemeOn}
+        shouldForceThemeReset={true}
       >
         <h1>Theme: {globalState.theme}</h1>
         <h2>{storyMeta?.customValue}</h2>

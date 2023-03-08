@@ -2,8 +2,8 @@ import { KINDS } from 'utils/constants';
 export const buttonKindsVariants = {
   info: {
     backgroundColor: '$info',
-    color: '$sky12',
-    '&:active, &:focus-visible': { outlineColor: '$sky12' },
+    color: '$infoContrast',
+    '&:active, &:focus-visible': { outlineColor: '$infoContrast' },
     '&:hover, &:focus': {
       transform: 'translateY(-2px)',
       cursor: 'pointer',
@@ -13,8 +13,8 @@ export const buttonKindsVariants = {
   },
   success: {
     backgroundColor: '$success',
-    color: '$grass12',
-    '&:active, &:focus-visible': { outlineColor: '$grass12' },
+    color: '$successContrast',
+    '&:active, &:focus-visible': { outlineColor: '$successContrast' },
     '&:hover, &:focus': {
       transform: 'translateY(-2px)',
       cursor: 'pointer',
@@ -24,8 +24,8 @@ export const buttonKindsVariants = {
   },
   warning: {
     backgroundColor: '$warning',
-    color: '$amber12',
-    '&:active, &:focus-visible': { outlineColor: '$amber12' },
+    color: '$warningContrast',
+    '&:active, &:focus-visible': { outlineColor: '$warningContrast' },
     '&:hover, &:focus': {
       transform: 'translateY(-2px)',
       cursor: 'pointer',
@@ -35,8 +35,8 @@ export const buttonKindsVariants = {
   },
   error: {
     backgroundColor: '$error',
-    color: '$tomato12',
-    '&:active, &:focus-visible': { outlineColor: '$tomato12' },
+    color: '$errorContrast',
+    '&:active, &:focus-visible': { outlineColor: '$errorContrast' },
     '&:hover, &:focus': {
       transform: 'translateY(-2px)',
       cursor: 'pointer',
@@ -46,8 +46,8 @@ export const buttonKindsVariants = {
   },
   primary: {
     backgroundColor: '$primary',
-    color: '$purple12',
-    '&:active, &:focus-visible': { outlineColor: '$purple12' },
+    color: '$primaryContrast',
+    '&:active, &:focus-visible': { outlineColor: '$primaryContrast' },
     '&:hover, &:focus': {
       transform: 'translateY(-2px)',
       cursor: 'pointer',
