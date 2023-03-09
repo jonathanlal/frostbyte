@@ -1,25 +1,35 @@
 import type { Story } from '@ladle/react';
-import { Label, LabelProps, COLORS_ARRAY } from 'frostbyte';
+import { Label, LabelProps, COLORS_ARRAY, P } from 'frostbyte';
 import { FROSTBYTE_COLORS } from './constants';
 
 export const LabelC: Story<LabelProps> = ({ ...props }) => (
   <>
-    <p>Size:</p>
+    <P color="black" size="20">
+      Size:
+    </P>
     <Label size={props.size} color="info">
       {props.children}
     </Label>
     <br />
-    <p>Color:</p>
+    <P color="black" size="20">
+      Color:
+    </P>
     <Label color={props.color} size={25}>
       {props.children}
     </Label>
     <br />
-    <p>Weight:</p>
+    <P color="black" size="20">
+      Weight:
+    </P>
     <Label weight={props.weight} size={25} color="success">
       {props.children}
     </Label>
   </>
 );
+LabelC.meta = {
+  title: 'Label',
+  description: '',
+};
 LabelC.args = {
   children: 'Lorem ipsum dolor sit amet.',
 };
@@ -42,7 +52,6 @@ LabelC.storyName = 'Label';
 
 export const LabelColors: Story<LabelProps> = () => (
   <>
-    <h1>Label colors</h1>
     {FROSTBYTE_COLORS.map((color) => (
       <>
         {Array.from({ length: 12 }).map((_, i) => (
@@ -54,3 +63,8 @@ export const LabelColors: Story<LabelProps> = () => (
     ))}
   </>
 );
+LabelColors.meta = {
+  title: 'Label Colors',
+  description: '',
+  disableColorSelector: true,
+};

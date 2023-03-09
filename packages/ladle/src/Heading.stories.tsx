@@ -1,30 +1,42 @@
 import type { Story } from '@ladle/react';
-import { H, SIZES_ARRAY, COLORS_ARRAY, HeaderProps } from 'frostbyte';
+import { H, P, SIZES_ARRAY, COLORS_ARRAY, HeaderProps } from 'frostbyte';
 import { FROSTBYTE_COLORS } from './constants';
 
 export const Heading: Story<HeaderProps> = ({ ...props }) => (
   <>
-    <p>Responsive:</p>
+    <P color="black" size="20">
+      Responsive:
+    </P>
     <H responsive={props.responsive} color="info">
       {props.children}
     </H>
     <br />
-    <p>Size:</p>
+    <P color="black" size="20">
+      Size:
+    </P>
     <H size={props.size} color="success">
       {props.children}
     </H>
     <br />
-    <p>Color:</p>
+    <P color="black" size="20">
+      Color:
+    </P>
     <H color={props.color} size={25}>
       {props.children}
     </H>
     <br />
-    <p>As:</p>
+    <P color="black" size="20">
+      As:
+    </P>
     <H as={props.as} color="primary">
       {props.children}
     </H>
   </>
 );
+Heading.meta = {
+  title: 'Heading (H)',
+  description: '',
+};
 Heading.args = {
   children: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   as: 'h1',
@@ -52,7 +64,6 @@ Heading.argTypes = {
 
 export const HeadingColors: Story<HeaderProps> = () => (
   <>
-    <h1>Heading colors</h1>
     {FROSTBYTE_COLORS.map((color) => (
       <>
         {Array.from({ length: 12 }).map((_, i) => (
@@ -65,3 +76,8 @@ export const HeadingColors: Story<HeaderProps> = () => (
     ))}
   </>
 );
+HeadingColors.meta = {
+  title: 'Heading Colors',
+  description: '',
+  disableColorSelector: true,
+};

@@ -4,7 +4,7 @@ import {
   ActionType,
   ThemeState,
 } from '@ladle/react';
-import { COLORS_OBJECT, FrostbyteProvider } from 'frostbyte';
+import { COLORS_OBJECT, FrostbyteProvider, H, P } from 'frostbyte';
 import React, { useState } from 'react';
 import { CustomThemeSelect } from './CustomThemeSelect';
 
@@ -37,20 +37,22 @@ export const Provider: GlobalProvider = ({ children, storyMeta }) => {
 
   return (
     <>
-      <button onClick={() => toggleDarkMode()}>
-        isDarkThemeActive: {isDarkThemeActive.toString()}
-      </button>
-
-      <button onClick={() => setIsCustomThemeOn(!isCustomThemeOn)}>
-        customTheme: {isCustomThemeOn.toString()}
-      </button>
-
-      <CustomThemeSelect
-        setCustomThemeColors={setCustomThemeColors}
-        customThemeColors={customThemeColors}
-        isDarkMode={isDarkThemeActive}
-      />
-
+      <div style={{ textAlign: 'right' }}>
+        <button onClick={() => toggleDarkMode()}>
+          dark: {isDarkThemeActive.toString()}
+        </button>
+      </div>
+      {!storyMeta?.disableColorSelector && (
+        <>
+          <CustomThemeSelect
+            setCustomThemeColors={setCustomThemeColors}
+            customThemeColors={customThemeColors}
+            isDarkMode={isDarkThemeActive}
+            setIsCustomThemeOn={setIsCustomThemeOn}
+            isCustomThemeOn={isCustomThemeOn}
+          />
+        </>
+      )}
       <FrostbyteProvider
         isDarkThemeActive={globalState.theme === 'dark'}
         customTheme={{
@@ -59,8 +61,13 @@ export const Provider: GlobalProvider = ({ children, storyMeta }) => {
         isCustomThemeActive={isCustomThemeOn}
         shouldForceThemeReset={true}
       >
-        <h1>Theme: {globalState.theme}</h1>
-        <h2>{storyMeta?.customValue}</h2>
+        <H size={35} color="black">
+          {storyMeta?.title}
+        </H>
+        <P color="black" size={20}>
+          {storyMeta?.description}
+        </P>
+        <br />
         {children}
       </FrostbyteProvider>
     </>

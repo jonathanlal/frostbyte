@@ -1,4 +1,5 @@
 import type { Story } from '@ladle/react';
+import { action } from '@ladle/react';
 import {
   Button,
   ButtonProps,
@@ -6,16 +7,23 @@ import {
   KINDS_ARRAY,
 } from 'frostbyte';
 import { FROSTBYTE_COLORS } from './constants';
+
 export const ButtonC: Story<ButtonProps> = ({ ...props }) => (
   <>
-    <h1>Button component</h1>
-    <p>
-      (when selecting kind, reset to default first if you have selected a color
-      already)
-    </p>
-    <Button {...props}>{props.children}</Button>
+    <Button
+      {...props}
+      color={props.color ? props.color : 'grass8'}
+      onClick={action('onClick')}
+    >
+      {props.children}
+    </Button>
   </>
 );
+ButtonC.meta = {
+  title: 'Button',
+  description: '',
+  disableColorSelector: true,
+};
 ButtonC.args = {
   children: 'Click me',
   fullWidth: false,
@@ -34,17 +42,11 @@ ButtonC.argTypes = {
     control: { type: 'select' },
     options: COLORS_WITHOUT_KINDS_ARRAY,
   },
-  kind: {
-    control: { type: 'select' },
-    options: KINDS_ARRAY,
-  },
 };
 ButtonC.storyName = 'Button';
 
 export const Colors: Story<ButtonProps> = () => (
   <>
-    <h1>Button colors</h1>
-    <p>usage: 'red6'</p>
     <table>
       {FROSTBYTE_COLORS.map((color) => (
         <>
@@ -66,10 +68,14 @@ export const Colors: Story<ButtonProps> = () => (
     </table>
   </>
 );
+Colors.meta = {
+  title: 'Button Colors',
+  description: 'colors available in the color prop - based on radix-ui colors.',
+  disableColorSelector: true,
+};
 
 export const ColorsOutlined: Story<ButtonProps> = () => (
   <>
-    <h1>Button outlined colors</h1>
     <table>
       {FROSTBYTE_COLORS.map((color) => (
         <>
@@ -93,30 +99,49 @@ export const ColorsOutlined: Story<ButtonProps> = () => (
   </>
 );
 
-export const Kinds: Story<ButtonProps> = () => (
+ColorsOutlined.meta = {
+  title: 'Button outlined colors',
+  description: 'With the outlined prop, you can get a outlined button.',
+  disableColorSelector: true,
+};
+
+export default {
+  meta: {},
+};
+export const Kinds: Story<ButtonProps> = ({ ...props }) => (
   <>
-    <h1>Button kinds</h1>
     {KINDS_ARRAY.map((type) => (
-      <>
-        <div style={{ margin: '2px', display: 'inline-block' }}>
-          <Button size="xl" kind={type as ButtonProps['kind']}>
-            {type}
-          </Button>
-        </div>
-        <br />
-      </>
-    ))}
-    <br />
-    <h1>Button kinds outlined</h1>
-    {KINDS_ARRAY.map((type) => (
-      <>
-        <div style={{ margin: '2px', display: 'inline-block' }}>
-          <Button size="xl" kind={type as ButtonProps['kind']} outlined>
-            {type}
-          </Button>
-        </div>
-        <br />
-      </>
+      <div
+        style={{
+          margin: '2px',
+          display: props.fullWidth ? 'block' : 'inline-block',
+        }}
+      >
+        <Button size="xl" kind={type as ButtonProps['kind']} {...props}>
+          {type}
+        </Button>
+      </div>
     ))}
   </>
 );
+
+Kinds.meta = {
+  title: 'Button kinds',
+  description: '',
+  disableColorSelector: false,
+};
+Kinds.args = {
+  fullWidth: false,
+  outlined: false,
+};
+Kinds.argTypes = {
+  borderRadius: {
+    control: { type: 'inline-radio' },
+    options: ['sm', 'md', 'lg', 'xl'],
+  },
+  size: {
+    control: { type: 'inline-radio' },
+    options: ['sm', 'md', 'lg', 'xl'],
+    defaultValue: 'lg',
+  },
+};

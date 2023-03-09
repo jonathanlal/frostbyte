@@ -4,27 +4,40 @@ import { FROSTBYTE_COLORS } from './constants';
 
 export const Paragraph: Story<ParagraphProps> = ({ ...props }) => (
   <>
-    <p>Responsive:</p>
+    <P color="black" size="20">
+      Responsive:
+    </P>
     <P responsive={props.responsive} color="info">
       {props.children}
     </P>
     <br />
-    <p>Size:</p>
+    <P color="black" size="20">
+      Size:
+    </P>
     <P size={props.size} color="primary">
       {props.children}
     </P>
     <br />
-    <p>Color:</p>
+    <P color="black" size="20">
+      Color:
+    </P>
     <P color={props.color} size={25}>
       {props.children}
     </P>
     <br />
-    <p>Weight:</p>
+    <P color="black" size="20">
+      Weight:
+    </P>
     <P weight={props.weight} size={25} color="success">
       {props.children}
     </P>
   </>
 );
+Paragraph.meta = {
+  title: 'Paragraph',
+  description: '',
+  disableColorSelector: true,
+};
 Paragraph.args = {
   children:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -52,7 +65,6 @@ Paragraph.argTypes = {
 
 export const ParagraphColors: Story<ParagraphProps> = () => (
   <>
-    <h1>Paragraph colors</h1>
     {FROSTBYTE_COLORS.map((color) => (
       <>
         {Array.from({ length: 12 }).map((_, i) => (
@@ -65,3 +77,8 @@ export const ParagraphColors: Story<ParagraphProps> = () => (
     ))}
   </>
 );
+ParagraphColors.meta = {
+  title: 'Paragraph colors',
+  description: '',
+  disableColorSelector: true,
+};

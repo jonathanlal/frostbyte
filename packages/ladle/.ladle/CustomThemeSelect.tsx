@@ -97,6 +97,8 @@ export const CustomThemeSelect = ({
   setCustomThemeColors,
   customThemeColors,
   isDarkMode,
+  setIsCustomThemeOn,
+  isCustomThemeOn,
 }: {
   setCustomThemeColors: (customTheme: {
     primary: string;
@@ -113,9 +115,10 @@ export const CustomThemeSelect = ({
     info: string;
   };
   isDarkMode: boolean;
+  setIsCustomThemeOn: (isCustomThemeOn: boolean) => void;
+  isCustomThemeOn: boolean;
 }) => {
   const colourOptions = convertColorsToObject(isDarkMode);
-  console.log('colourOptions', colourOptions);
 
   const SelectKind = ({ kind }: { kind: string }) => {
     const currentValue = colourOptions.find(
@@ -124,7 +127,7 @@ export const CustomThemeSelect = ({
 
     return (
       <div>
-        <Label>{kind}:</Label>
+        <Label color={kind as keyof typeof COLORS_OBJECT}>{kind}:</Label>
         <Select
           options={colourOptions}
           styles={colourStyles}
@@ -139,12 +142,29 @@ export const CustomThemeSelect = ({
     setCustomThemeColors({ ...customThemeColors, [kind]: e.value });
   };
   return (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <SelectKind kind="primary" />
-      <SelectKind kind="success" />
-      <SelectKind kind="error" />
-      <SelectKind kind="warning" />
-      <SelectKind kind="info" />
-    </div>
+    <>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          margin: '20px auto',
+          alignItems: 'end',
+          gap: '10px',
+        }}
+      >
+        <SelectKind kind="primary" />
+        <SelectKind kind="success" />
+        <SelectKind kind="error" />
+        <SelectKind kind="warning" />
+        <SelectKind kind="info" />
+        <button
+          onClick={() => setIsCustomThemeOn(!isCustomThemeOn)}
+          style={{ flexBasis: 'min-content' }}
+        >
+          active: {isCustomThemeOn.toString()}
+        </button>
+      </div>
+      <hr style={{ marginBottom: '45px' }} />
+    </>
   );
 };
