@@ -6,5 +6,9 @@ export const useFrostbyte = () => {
   if (!context) {
     throw new Error('useFrostbyte must be used within a FrostbyteProvider');
   }
-  return context;
+  const isDarkTheme = context.currentTheme === 'darkTheme';
+  return {
+    isDarkTheme,
+    ...context,
+  };
 };

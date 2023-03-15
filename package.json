@@ -21,6 +21,5 @@
     "ladle": "npx lerna run dev --scope=ladle",
     "build:all": "npx lerna run build",
     "lerna:publish": "npx lerna publish --no-private"
-  },
-  "dependencies": {}
+  }
 }

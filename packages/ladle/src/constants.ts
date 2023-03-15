@@ -21,5 +21,6 @@ export const FROSTBYTE_COLORS = [
   'gold',
   'brown',
   'bronze',
+  'mauve',
   'gray',
 ];

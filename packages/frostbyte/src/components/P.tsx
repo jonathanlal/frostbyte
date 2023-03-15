@@ -20,6 +20,7 @@ const StyledParagraph = styled('p', {
 
 export type ParagraphProps = VariantProps<typeof StyledParagraph> & {
   children: ReactNode;
+  ariaLabel?: string;
 };
 
 export const P = ({ children, ...props }: ParagraphProps) => (

@@ -1,11 +1,12 @@
 import React from 'react';
 import { fontWeightVariants } from 'styles/variants/fontWeightVariants';
+import * as LabelPrimitive from '@radix-ui/react-label';
 import type { VariantProps } from '@stitches/react';
 import { styled } from 'utils/getStyles';
 import { fontSizeVariants } from 'styles/variants/fontSizeVariants';
 import { colorVariants } from 'styles/variants/colorVariants';
 
-const StyledLabel = styled('label', {
+const StyledLabel = styled(LabelPrimitive.Root, {
   margin: 0,
   userSelect: 'none',
   color: '$black',

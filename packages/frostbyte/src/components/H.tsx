@@ -11,6 +11,7 @@ export type HeaderProps = {
   color?: COLORS;
   size?: keyof typeof fontSizeVariants;
   children: React.ReactNode;
+  ariaLabel?: string;
 };
 
 export const H = ({ children, as = 'h1', ...props }: HeaderProps) => {

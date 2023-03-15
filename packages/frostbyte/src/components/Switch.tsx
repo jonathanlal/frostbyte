@@ -10,6 +10,7 @@ export type SwitchProps = VariantProps<typeof SwitchRoot> & {
   checked: boolean;
   label?: string;
   labelFor?: string;
+  labelBefore?: boolean;
 } & Exclude<PrefixedLabelProps, 'labelChildren'>;
 
 /**

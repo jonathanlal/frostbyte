@@ -17,21 +17,39 @@ import {
 } from 'utils/FrostbyteProvider';
 import { Button, ButtonProps } from 'components/Button';
 import { brandColors } from 'styles/colors';
+import { Avatar, AvatarProps } from 'components/Avatar';
+import { Alert, AlertProps } from 'components/Alert';
+import { Tabs, TabsProps } from 'components/Tabs';
+import Accordion, { AccordionProps } from 'components/Accordion';
+import { CheckBox, CheckBoxProps } from 'components/Checkbox';
+import { Collapsible, CollapsibleProps } from 'components/Collapsible';
 
 export {
   styled,
   P,
+  ParagraphProps,
   H,
   HeaderProps,
+  Avatar,
+  AvatarProps,
+  Alert,
+  AlertProps,
+  Tabs,
+  TabsProps,
+  Accordion,
+  AccordionProps,
   Label,
   LabelProps,
   Switch,
   SwitchProps,
   FrostbyteProvider,
   FrostbyteProviderProps,
-  ParagraphProps,
   Button,
   ButtonProps,
+  CheckBox,
+  CheckBoxProps,
+  Collapsible,
+  CollapsibleProps,
   SIZES_ARRAY,
   COLORS_WITHOUT_KINDS_ARRAY,
   COLORS_ARRAY,
