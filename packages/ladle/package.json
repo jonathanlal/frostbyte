@@ -1,5 +1,5 @@
 {
-  "private": false,
+  "private": true,
   "name": "ladle",
   "version": "0.0.0",
   "type": "module",
