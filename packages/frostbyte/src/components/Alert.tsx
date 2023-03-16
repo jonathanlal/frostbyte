@@ -12,6 +12,10 @@ export type AlertProps = {
   modal: AlertModalProps;
   children: ReactNode;
 };
+
+/*
+A modal dialog that interrupts the user with important content and expects a response.
+*/
 export const Alert = ({ modal, children }: AlertProps) => {
   const [open, setOpen] = React.useState(false);
 

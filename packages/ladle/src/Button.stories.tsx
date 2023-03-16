@@ -21,7 +21,7 @@ export const ButtonC: Story<ButtonProps> = ({ ...props }) => (
 );
 ButtonC.meta = {
   title: 'Button',
-  description: '',
+  description: 'A button component.',
   disableColorSelector: true,
 };
 ButtonC.args = {
@@ -127,7 +127,7 @@ export const Kinds: Story<ButtonProps> = ({ ...props }) => (
 
 Kinds.meta = {
   title: 'Button kinds',
-  description: '',
+  description: 'Different kinds of colors based on brand.',
   disableColorSelector: false,
 };
 Kinds.args = {

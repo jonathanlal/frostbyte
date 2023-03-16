@@ -9,7 +9,7 @@ import { responsiveFontSizeVariants } from 'styles/variants/responsiveFontSizeVa
 const StyledParagraph = styled('p', {
   margin: 0,
   color: '$purple10',
-  lineHeight: 1,
+  lineHeight: '23px',
   variants: {
     color: colorVariants,
     responsive: responsiveFontSizeVariants['p'],

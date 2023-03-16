@@ -79,6 +79,7 @@ export const ParagraphColors: Story<ParagraphProps> = () => (
 );
 ParagraphColors.meta = {
   title: 'Paragraph colors',
-  description: '',
+  description:
+    'Renders an accessible paragraph component associated with controls.',
   disableColorSelector: true,
 };

@@ -4,7 +4,7 @@ import {
   ActionType,
   ThemeState,
 } from '@ladle/react';
-import { COLORS_OBJECT, FrostbyteProvider, H, P } from 'frostbyte';
+import { COLORS_OBJECT, FrostbyteProvider, H, P, Seperator } from 'frostbyte';
 import React, { useState } from 'react';
 import { CustomThemeSelect } from './CustomThemeSelect';
 
@@ -64,9 +64,13 @@ export const Provider: GlobalProvider = ({ children, storyMeta }) => {
         <H size={35} color="black">
           {storyMeta?.title}
         </H>
+        <br />
         <P color="black" size={20}>
           {storyMeta?.description}
         </P>
+        <br />
+        <Seperator color="mauve8" />
+        <br />
         <br />
         {children}
       </FrostbyteProvider>

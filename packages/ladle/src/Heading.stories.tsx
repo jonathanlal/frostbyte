@@ -78,6 +78,7 @@ export const HeadingColors: Story<HeaderProps> = () => (
 );
 HeadingColors.meta = {
   title: 'Heading Colors',
-  description: '',
+  description:
+    'Renders an accessible header component associated with controls.',
   disableColorSelector: true,
 };

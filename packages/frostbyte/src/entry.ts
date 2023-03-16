@@ -23,6 +23,14 @@ import { Tabs, TabsProps } from 'components/Tabs';
 import Accordion, { AccordionProps } from 'components/Accordion';
 import { CheckBox, CheckBoxProps } from 'components/Checkbox';
 import { Collapsible, CollapsibleProps } from 'components/Collapsible';
+import { Modal, ModalProps } from 'components/Modal';
+import { Popover, PopoverProps } from 'components/Popover';
+import { RadioGroup, RadioGroupProps } from 'components/RadioGroup';
+import { Select, SelectProps } from 'components/Select';
+import { Toast, ToastProps } from 'components/Toast';
+import { Tooltip, TooltipProps } from 'components/Tooltip';
+import { Toggle, ToggleProps } from 'components/Toggle';
+import { Seperator, SeperatorProps } from 'components/Seperator';
 
 export {
   styled,
@@ -50,6 +58,22 @@ export {
   CheckBoxProps,
   Collapsible,
   CollapsibleProps,
+  Modal,
+  ModalProps,
+  Popover,
+  PopoverProps,
+  RadioGroup,
+  RadioGroupProps,
+  Select,
+  SelectProps,
+  Toast,
+  ToastProps,
+  Toggle,
+  ToggleProps,
+  Tooltip,
+  TooltipProps,
+  Seperator,
+  SeperatorProps,
   SIZES_ARRAY,
   COLORS_WITHOUT_KINDS_ARRAY,
   COLORS_ARRAY,

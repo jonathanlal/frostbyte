@@ -3,15 +3,7 @@ import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import { Label } from './Label';
 import { styled } from 'utils/getStyles';
 
-export const RadioGroup = ({
-  defaultValue,
-  onValueChange,
-  value,
-  disabled,
-  items,
-  ariaLabel,
-  size = 'md',
-}: {
+export type RadioGroupProps = {
   defaultValue?: string;
   onValueChange: (value: string) => void;
   value?: string;
@@ -22,7 +14,16 @@ export const RadioGroup = ({
   }[];
   ariaLabel?: string;
   size?: 'sm' | 'md' | 'lg';
-}) => {
+};
+export const RadioGroup = ({
+  defaultValue,
+  onValueChange,
+  value,
+  disabled,
+  items,
+  ariaLabel,
+  size = 'md',
+}: RadioGroupProps) => {
   if (!defaultValue) {
     defaultValue = items[0].value;
   }

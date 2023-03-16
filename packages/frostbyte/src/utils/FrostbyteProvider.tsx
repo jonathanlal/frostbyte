@@ -5,6 +5,7 @@ import { ConfigType } from '@stitches/react/types/config';
 import { darkThemeStyles as defaultDarkTheme } from 'styles/darkTheme';
 import { reset as resetTheme } from 'utils/getStyles';
 import { globalStyles } from 'styles/globalCss';
+import * as Tooltip from '@radix-ui/react-tooltip';
 
 export type CustomThemeType = ConfigType.Theme | undefined | null;
 
@@ -16,7 +17,21 @@ export interface FrostbyteProviderProps {
   isDarkThemeActive?: boolean;
   shouldResetGlobalStyles?: boolean;
   shouldForceThemeReset?: boolean;
+  toolTipProvider?: boolean;
 }
+
+const Providers = ({
+  toolTipProvider,
+  children,
+}: {
+  toolTipProvider: boolean;
+  children: React.ReactNode;
+}) => {
+  if (toolTipProvider) {
+    return <Tooltip.Provider>{children}</Tooltip.Provider>;
+  }
+  return <>{children}</>;
+};
 
 /**
  * if isDarkThemeActive is true, and custom theme is defined but no custom dark theme is defined, then the custom theme color keys will also be used in dark theme (as long as isCustomThemeActive is also true)
@@ -31,6 +46,7 @@ export const FrostbyteProvider = ({
   isDarkThemeActive = false,
   shouldResetGlobalStyles = true,
   shouldForceThemeReset = false,
+  toolTipProvider = true,
   children,
 }: FrostbyteProviderProps) => {
   if (shouldResetGlobalStyles) globalStyles();
@@ -63,7 +79,9 @@ export const FrostbyteProvider = ({
           colorKinds,
         }}
       >
-        <div className={darkTheme}>{children}</div>
+        <Providers toolTipProvider={toolTipProvider}>
+          <div className={darkTheme}>{children}</div>
+        </Providers>
       </FrostbyteContext.Provider>
     );
   }
@@ -85,7 +103,9 @@ export const FrostbyteProvider = ({
           colorKinds,
         }}
       >
-        <div className={theme}>{children}</div>
+        <Providers toolTipProvider={toolTipProvider}>
+          <div className={theme}>{children}</div>
+        </Providers>
       </FrostbyteContext.Provider>
     );
   }
@@ -106,7 +126,7 @@ export const FrostbyteProvider = ({
         colorKinds,
       }}
     >
-      {children}
+      <Providers toolTipProvider={toolTipProvider}>{children}</Providers>
     </FrostbyteContext.Provider>
   );
 };

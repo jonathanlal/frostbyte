@@ -64,6 +64,7 @@ TabsC.argTypes = {
 TabsC.storyName = 'Tabs';
 TabsC.meta = {
   title: 'Tabs',
-  description: '',
+  description:
+    'A set of layered sections of content—known as tab panels—that are displayed one at a time.',
   disableColorSelector: true,
 };

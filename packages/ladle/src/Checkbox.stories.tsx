@@ -44,6 +44,7 @@ CheckboxC.argTypes = {
 CheckboxC.storyName = 'Checkbox';
 CheckboxC.meta = {
   title: 'CheckBox',
-  description: '',
+  description:
+    'A control that allows the user to toggle between checked and not checked.',
   disableColorSelector: true,
 };

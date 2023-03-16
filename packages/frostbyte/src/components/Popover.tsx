@@ -45,11 +45,17 @@ const StyledPopoverContent = styled(PopoverPrimitive.Content, {
   },
 });
 
-type PopoverProps = PopoverPrimitive.PopoverContentProps;
-
 export const PopoverContainer = PopoverPrimitive.Root;
 export const PopoverAnchor = PopoverPrimitive.Anchor;
 
+export type PopoverProps = {
+  children: ReactNode;
+  side?: PopoverPrimitive.PopoverContentProps['side'];
+  showArrow?: boolean;
+  arrowHeight?: number;
+  arrowWidth?: number;
+  arrowColor?: string;
+};
 /**
  *
  * The first child is the trigger, the rest is the content
@@ -61,14 +67,7 @@ export const Popover = ({
   arrowHeight,
   arrowWidth,
   arrowColor,
-}: {
-  children: ReactNode;
-  side?: PopoverPrimitive.PopoverContentProps['side'];
-  showArrow?: boolean;
-  arrowHeight?: number;
-  arrowWidth?: number;
-  arrowColor?: string;
-}) => {
+}: PopoverProps) => {
   const trigger = (children as ReactNode[])[0];
   const content = (children as ReactNode[]).slice(1);
 
@@ -98,7 +97,7 @@ export const PopoverTrigger = ({ children }: { children: ReactNode }) => (
 
 export const PopoverContent = React.forwardRef<
   HTMLDivElement,
-  PopoverProps & {
+  PopoverPrimitive.PopoverContentProps & {
     showArrow?: boolean;
     arrowWidth?: number;
     arrowHeight?: number;

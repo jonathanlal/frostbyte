@@ -5,6 +5,14 @@ import { styled, keyframes } from '@stitches/react';
 import { blackA } from '@radix-ui/colors';
 import { Cross2Icon } from '@radix-ui/react-icons';
 
+export type ModalProps = {
+  ariaTitle?: string;
+  children: React.ReactNode;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  width?: string;
+  height?: string;
+};
 //add this to the provider so we have it globally and create a hook to use it
 export const Modal = ({
   ariaTitle,
@@ -13,14 +21,7 @@ export const Modal = ({
   setOpen,
   width = '450px',
   height = '85vh',
-}: {
-  ariaTitle?: string;
-  children: React.ReactNode;
-  open: boolean;
-  setOpen: (open: boolean) => void;
-  width?: string;
-  height?: string;
-}) => {
+}: ModalProps) => {
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Portal>

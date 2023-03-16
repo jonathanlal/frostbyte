@@ -28,7 +28,7 @@ export const LabelC: Story<LabelProps> = ({ ...props }) => (
 );
 LabelC.meta = {
   title: 'Label',
-  description: '',
+  description: 'Renders an accessible label associated with controls.',
 };
 LabelC.args = {
   children: 'Lorem ipsum dolor sit amet.',

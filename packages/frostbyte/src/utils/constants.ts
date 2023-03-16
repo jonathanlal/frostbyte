@@ -1,5 +1,5 @@
-import { colors } from '../styles/colors.js'; //leave like this otherwise gen script will break //fix this somehow
-// import { colors } from 'styles/colors'; //in development
+// import { colors } from '../styles/colors.js'; //leave like this otherwise gen script will break //fix this somehow
+import { colors } from 'styles/colors'; //in development
 
 enum SIZES_ENUM {
   xs = 'xs',
