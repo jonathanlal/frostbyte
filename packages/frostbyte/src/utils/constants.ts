@@ -56,3 +56,7 @@ export const COLORS_OBJECT_DARK = colors.dark;
 export const COLORS_WITHOUT_KINDS_ARRAY = Object.keys(
   colors.default
 ) as COLORS_WITHOUT_KINDS[];
+
+export const getColorValue = (color: COLORS, isDarkTheme?: boolean) => {
+  return isDarkTheme ? COLORS_OBJECT_DARK[color] : COLORS_OBJECT[color];
+};

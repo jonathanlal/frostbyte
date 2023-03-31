@@ -1,11 +1,12 @@
 import React from 'react';
 import { FrostbyteContext } from 'utils/FrostbyteContext';
-import { createTheme, config } from './getStyles';
+import { createTheme, config, styled } from './getStyles';
 import { ConfigType } from '@stitches/react/types/config';
 import { darkThemeStyles as defaultDarkTheme } from 'styles/darkTheme';
 import { reset as resetTheme } from 'utils/getStyles';
 import { globalStyles } from 'styles/globalCss';
 import * as Tooltip from '@radix-ui/react-tooltip';
+import { NavMenu, NavMenuProps } from 'components/NavMenu';
 
 export type CustomThemeType = ConfigType.Theme | undefined | null;
 
@@ -18,7 +19,17 @@ export interface FrostbyteProviderProps {
   shouldResetGlobalStyles?: boolean;
   shouldForceThemeReset?: boolean;
   toolTipProvider?: boolean;
+  useLayout?: boolean;
+  navMenu?: NavMenuProps;
 }
+
+const Layout = styled('div', {
+  backgroundColor: '$white',
+  height: '100%',
+  fontSize: '18px',
+  color: '$black',
+  padding: '30px 25px',
+});
 
 const Providers = ({
   toolTipProvider,
@@ -47,6 +58,8 @@ export const FrostbyteProvider = ({
   shouldResetGlobalStyles = true,
   shouldForceThemeReset = false,
   toolTipProvider = true,
+  useLayout = true,
+  navMenu,
   children,
 }: FrostbyteProviderProps) => {
   if (shouldResetGlobalStyles) globalStyles();
@@ -80,7 +93,10 @@ export const FrostbyteProvider = ({
         }}
       >
         <Providers toolTipProvider={toolTipProvider}>
-          <div className={darkTheme}>{children}</div>
+          <div className={darkTheme}>
+            {navMenu && <NavMenu {...navMenu} />}
+            {useLayout ? <Layout>{children}</Layout> : children}
+          </div>
         </Providers>
       </FrostbyteContext.Provider>
     );
@@ -104,7 +120,10 @@ export const FrostbyteProvider = ({
         }}
       >
         <Providers toolTipProvider={toolTipProvider}>
-          <div className={theme}>{children}</div>
+          <div className={theme}>
+            {navMenu && <NavMenu {...navMenu} />}
+            {useLayout ? <Layout>{children}</Layout> : children}
+          </div>
         </Providers>
       </FrostbyteContext.Provider>
     );
@@ -126,7 +145,10 @@ export const FrostbyteProvider = ({
         colorKinds,
       }}
     >
-      <Providers toolTipProvider={toolTipProvider}>{children}</Providers>
+      <Providers toolTipProvider={toolTipProvider}>
+        {navMenu && <NavMenu {...navMenu} />}
+        {useLayout ? <Layout>{children}</Layout> : children}
+      </Providers>
     </FrostbyteContext.Provider>
   );
 };

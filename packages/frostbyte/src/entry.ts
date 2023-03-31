@@ -31,6 +31,7 @@ import { Toast, ToastProps } from 'components/Toast';
 import { Tooltip, TooltipProps } from 'components/Tooltip';
 import { Toggle, ToggleProps } from 'components/Toggle';
 import { Seperator, SeperatorProps } from 'components/Seperator';
+import { NavMenu, NavMenuProps } from 'components/NavMenu';
 
 export {
   styled,
@@ -74,6 +75,8 @@ export {
   TooltipProps,
   Seperator,
   SeperatorProps,
+  NavMenu,
+  NavMenuProps,
   SIZES_ARRAY,
   COLORS_WITHOUT_KINDS_ARRAY,
   COLORS_ARRAY,

@@ -15,9 +15,12 @@ function generateFontSizes() {
 
 export const defaultStyles: FrostbyteConfigType = {
   media: {
-    sm: '(min-width: 640px)',
-    md: '(min-width: 768px)',
-    lg: '(min-width: 1024px)',
+    smMax: '(max-width: 640px)',
+    mdMax: '(max-width: 850px)',
+    lgMax: '(max-width: 1024px)',
+    smMin: '(min-width: 640px)',
+    mdMin: '(min-width: 850px)',
+    lgMin: '(min-width: 1024px)',
   },
   theme: {
     colors: {

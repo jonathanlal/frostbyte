@@ -15,6 +15,7 @@ export const globalStyles = globalCss({
   },
   body: {
     lineHeight: 'normal',
+    overscrollBehavior: 'none', //prevent drag outside of page on mobile
   },
   'img, picture, video, canvas, svg': {
     display: 'block',

@@ -18,6 +18,9 @@ export type ButtonProps = VariantProps<typeof StyledButton> & {
   ariaLabel?: string;
   onClick?: () => void;
   color?: COLORS_WITHOUT_KINDS;
+  css?: Stitches.CSS;
+  href?: string;
+  tabIndex?: number;
 };
 
 export const Button = ({
@@ -31,14 +34,16 @@ export const Button = ({
   ariaLabel,
   color,
   onClick,
+  css,
+  href,
+  tabIndex,
 }: ButtonProps) => {
-  const { colorKinds, currentTheme } = useFrostbyte();
+  const { colorKinds } = useFrostbyte();
 
   const customCSS: Stitches.CSS = {};
 
   const colorKindsArr = Object.entries(colorKinds);
 
-  // if (!outlined) {
   colorKindsArr.forEach(([colorKind, colorKey]) => {
     if (colorKey !== brandColors[colorKind as keyof typeof brandColors]) {
       const customKindContrast = colorKey.replace(/\d+/g, '12');
@@ -49,34 +54,23 @@ export const Button = ({
       ] = `$colors${customKindContrast}`;
     }
   });
-  // } else {
-  // if(currentTheme === 'darkTheme') {
-
-  //   const textColor = currentTheme === 'darkTheme' ? '1' : '12'; //need a new css variable for this i think... otherwise will change others too
-  //   colorKindsArr.forEach(([colorKind, colorKey]) => {
-  //     if (colorKey !== brandColors[colorKind as keyof typeof brandColors]) {
-  //       const customKindContrast = colorKey.replace(/\d+/g, textColor);
-  //       customCSS[`$colors$${colorKind}`] = `$colors${colorKey}`;
-  //       customCSS[`$shadows$${colorKind}`] = `$shadows${colorKey}`;
-  //       customCSS[
-  //         `$colors$${colorKind}Contrast`
-  //       ] = `$colors${customKindContrast}`;
-  //     }
-  //   });
-  // }
 
   return (
     <StyledButton
       kind={!color ? kind : undefined}
       size={size}
-      onClick={onClick}
+      onClick={href ? () => (window.location.href = href) : onClick}
       type={type}
       aria-label={ariaLabel}
       fullWidth={fullWidth}
       borderRadius={borderRadius}
       outlined={outlined}
       color={color}
-      css={customCSS}
+      css={{
+        ...customCSS,
+        ...css,
+      }}
+      tabIndex={tabIndex}
     >
       {children}
     </StyledButton>
