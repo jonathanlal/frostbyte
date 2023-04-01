@@ -35,6 +35,7 @@ export type NavMenuProps = {
   };
   burgerColor?: COLORS;
   setDarkMode?: (on: boolean) => void;
+  mobileOnly?: boolean;
 };
 
 export const NavMenu = ({
@@ -42,10 +43,17 @@ export const NavMenu = ({
   logo,
   setDarkMode,
   burgerColor,
+  mobileOnly = false,
 }: NavMenuProps) => {
   return (
     <NavContainer>
-      <DesktopMenu navItems={navItems} logo={logo} setDarkMode={setDarkMode} />
+      {!mobileOnly && (
+        <DesktopMenu
+          navItems={navItems}
+          logo={logo}
+          setDarkMode={setDarkMode}
+        />
+      )}
       <MobileMenu
         navItems={navItems}
         burgerColor={burgerColor}
