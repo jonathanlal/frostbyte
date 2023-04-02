@@ -32,6 +32,7 @@ import { Tooltip, TooltipProps } from 'components/Tooltip';
 import { Toggle, ToggleProps } from 'components/Toggle';
 import { Seperator, SeperatorProps } from 'components/Seperator';
 import { NavMenu, NavMenuProps } from 'components/NavMenu';
+import { Footer, FooterProps } from 'components/Footer';
 
 export {
   styled,
@@ -77,6 +78,8 @@ export {
   SeperatorProps,
   NavMenu,
   NavMenuProps,
+  Footer,
+  FooterProps,
   SIZES_ARRAY,
   COLORS_WITHOUT_KINDS_ARRAY,
   COLORS_ARRAY,

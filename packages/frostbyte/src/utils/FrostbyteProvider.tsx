@@ -7,6 +7,7 @@ import { reset as resetTheme } from 'utils/getStyles';
 import { globalStyles } from 'styles/globalCss';
 import * as Tooltip from '@radix-ui/react-tooltip';
 import { NavMenu, NavMenuProps } from 'components/NavMenu';
+import { Footer, FooterProps } from 'components/Footer';
 
 export type CustomThemeType = ConfigType.Theme | undefined | null;
 
@@ -21,6 +22,7 @@ export interface FrostbyteProviderProps {
   toolTipProvider?: boolean;
   useLayout?: boolean;
   navMenu?: NavMenuProps;
+  footer?: FooterProps;
 }
 
 const Layout = styled('div', {
@@ -60,6 +62,7 @@ export const FrostbyteProvider = ({
   toolTipProvider = true,
   useLayout = true,
   navMenu,
+  footer,
   children,
 }: FrostbyteProviderProps) => {
   if (shouldResetGlobalStyles) globalStyles();
@@ -96,6 +99,7 @@ export const FrostbyteProvider = ({
           <div className={darkTheme}>
             {navMenu && <NavMenu {...navMenu} />}
             {useLayout ? <Layout>{children}</Layout> : children}
+            {footer && <Footer {...footer} />}
           </div>
         </Providers>
       </FrostbyteContext.Provider>
@@ -123,6 +127,7 @@ export const FrostbyteProvider = ({
           <div className={theme}>
             {navMenu && <NavMenu {...navMenu} />}
             {useLayout ? <Layout>{children}</Layout> : children}
+            {footer && <Footer {...footer} />}
           </div>
         </Providers>
       </FrostbyteContext.Provider>
@@ -148,6 +153,7 @@ export const FrostbyteProvider = ({
       <Providers toolTipProvider={toolTipProvider}>
         {navMenu && <NavMenu {...navMenu} />}
         {useLayout ? <Layout>{children}</Layout> : children}
+        {footer && <Footer {...footer} />}
       </Providers>
     </FrostbyteContext.Provider>
   );
