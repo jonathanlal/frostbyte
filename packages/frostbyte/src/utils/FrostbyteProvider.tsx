@@ -27,7 +27,7 @@ export interface FrostbyteProviderProps {
 
 const Layout = styled('div', {
   backgroundColor: '$white',
-  height: '100%',
+  height: '100vh',
   fontSize: '18px',
   color: '$black',
   padding: '30px 25px',
