@@ -35,6 +35,7 @@ import { NavMenu, NavMenuProps } from 'components/NavMenu';
 import { Footer, FooterProps } from 'components/Footer';
 
 export {
+  getCssText,
   styled,
   P,
   ParagraphProps,
@@ -87,5 +88,4 @@ export {
   COLORS_OBJECT_DARK,
   COLORS_OBJECT,
   brandColors,
-  getCssText,
 };
