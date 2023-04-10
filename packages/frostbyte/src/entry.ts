@@ -33,6 +33,7 @@ import { Toggle, ToggleProps } from 'components/Toggle';
 import { Seperator, SeperatorProps } from 'components/Seperator';
 import { NavMenu, NavMenuProps } from 'components/NavMenu';
 import { Footer, FooterProps } from 'components/Footer';
+import { useFrostbyte } from 'hooks/useFrostbyte';
 
 export {
   getCssText,
@@ -88,4 +89,5 @@ export {
   COLORS_OBJECT_DARK,
   COLORS_OBJECT,
   brandColors,
+  useFrostbyte,
 };
