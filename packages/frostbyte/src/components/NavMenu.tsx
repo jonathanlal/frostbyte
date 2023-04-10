@@ -71,4 +71,5 @@ const NavContainer = styled('div', {
   backgroundColor: '$mauve1',
   position: 'sticky',
   top: 0,
+  zIndex: 10,
 });

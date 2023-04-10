@@ -29,7 +29,7 @@ const Layout = styled('div', {
   backgroundColor: '$white',
   fontSize: '18px',
   color: '$black',
-  padding: '30px 25px',
+  // padding: '30px 25px',
 });
 
 const Providers = ({
