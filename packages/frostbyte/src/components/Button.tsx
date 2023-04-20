@@ -1,5 +1,5 @@
 import React from 'react';
-import type { VariantProps } from '@stitches/react';
+import { VariantProps, keyframes } from '@stitches/react';
 import { ReactNode } from 'react';
 import { styled } from 'utils/getStyles';
 import { COLORS_WITHOUT_KINDS } from 'utils/constants';
@@ -10,6 +10,35 @@ import { buttonColorOutlinedCompoundVariants } from 'styles/variants/buttonColor
 import { useFrostbyte } from 'hooks/useFrostbyte';
 import { brandColors } from 'styles/colors';
 import type * as Stitches from '@stitches/react';
+import Typewriter from 'typewriter-effect';
+
+const fadeInOut = keyframes({
+  '0%': {
+    opacity: 0.7,
+  },
+  '50%': {
+    opacity: 1,
+  },
+  '100%': {
+    opacity: 0.7,
+  },
+});
+
+const TypewriterWrapper = styled('span', {
+  display: 'grid',
+  placeItems: 'flex-start',
+
+  '& span.typeWriterText': {
+    // visibility: 'hidden', //hide background text completely
+    opacity: 0.3,
+    filter: 'blur(0.6px)',
+  },
+
+  '& .Typewriter': {
+    zIndex: 1,
+    position: 'absolute',
+  },
+});
 
 export type ButtonProps = VariantProps<typeof StyledButton> & {
   htmlFor?: string;
@@ -21,6 +50,10 @@ export type ButtonProps = VariantProps<typeof StyledButton> & {
   css?: Stitches.CSS;
   href?: string;
   tabIndex?: number;
+  disabled?: boolean;
+  loading?: boolean;
+  loadingText?: string;
+  loadingType?: 'typewriter'; //extend with more types
 };
 
 export const Button = ({
@@ -37,6 +70,10 @@ export const Button = ({
   css,
   href,
   tabIndex,
+  disabled,
+  loading,
+  loadingText = 'Loading...',
+  loadingType = 'typewriter',
 }: ButtonProps) => {
   const { colorKinds } = useFrostbyte();
 
@@ -71,14 +108,44 @@ export const Button = ({
         ...css,
       }}
       tabIndex={tabIndex}
+      disabled={disabled}
+      loading={loading}
     >
-      {children}
+      {loading ? (
+        loadingType === 'typewriter' ? (
+          <TypewriterWrapper>
+            <span className="typeWriterText">{loadingText}</span>
+            <Typewriter
+              options={{
+                strings: [`${loadingText}`],
+                autoStart: true,
+                loop: true,
+                skipAddStyles: true,
+                cursor: '',
+              }}
+            />
+          </TypewriterWrapper>
+        ) : null
+      ) : (
+        children
+      )}
     </StyledButton>
   );
 };
 
 const StyledButton = styled('button', {
   border: 'none',
+
+  '&[disabled]': {
+    opacity: 0.5,
+    '&:hover, &:focus': {
+      cursor: 'not-allowed',
+      transform: 'none',
+      boxShadow: 'none',
+      transition: 'none',
+    },
+  },
+
   compoundVariants: [
     ...buttonKindsOutlinedCompoundVariants,
     ...buttonColorOutlinedCompoundVariants,
@@ -136,5 +203,17 @@ const StyledButton = styled('button', {
       },
     },
     kind: buttonKindsVariants,
+    loading: {
+      true: {
+        animation: `${fadeInOut} 2s ease infinite`,
+
+        '&:hover, &:focus': {
+          cursor: 'wait',
+          transform: 'none',
+          boxShadow: 'none',
+          transition: 'none',
+        },
+      },
+    },
   },
 });

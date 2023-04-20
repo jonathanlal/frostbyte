@@ -28,6 +28,9 @@ ButtonC.args = {
   children: 'Click me',
   fullWidth: false,
   outlined: false,
+  disabled: false,
+  loading: false,
+  loadingText: 'Loading...',
 };
 ButtonC.argTypes = {
   borderRadius: {

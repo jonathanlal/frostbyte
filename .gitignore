@@ -1,2 +1,4 @@
 node_modules/
 lerna-debug.log
+*.code-workspace
+settings.json
