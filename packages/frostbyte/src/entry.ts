@@ -34,6 +34,7 @@ import { Seperator, SeperatorProps } from 'components/Seperator';
 import { NavMenu, NavMenuProps } from 'components/NavMenu';
 import { Footer, FooterProps } from 'components/Footer';
 import { useFrostbyte } from 'hooks/useFrostbyte';
+import { keyframes } from '@stitches/react';
 
 export {
   getCssText,
@@ -90,4 +91,5 @@ export {
   COLORS_OBJECT,
   brandColors,
   useFrostbyte,
+  keyframes,
 };
